@@ -23,7 +23,7 @@ class ProductType:
     price: int
     quality: QualityEnum
     # TODO 4: social_club (SocialClubType)
-    # QUESTION: uh oh - this could go evilly wrong...
+    # QUESTION: uh oh - this could go evilly wrong in future...
     # HINT: Maybe we should use one or more schema extensions? https://strawberry.rocks/docs/extensions
 
 
