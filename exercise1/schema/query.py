@@ -28,8 +28,9 @@ class Query:
             # quality=product.quality  # TODO 8: uncomment this as soon as you finished your types
         ) for product in Product.objects.all()]
 
-    # TODO 9: If you have time left: Extend this query with Member
-    # TODO 10: If you have time left: Extend this query with Guest
-
-    # TODO 11: Add a field current_date_time and return the current datetime
+    # DOCS: https://strawberry.rocks/docs/types/scalars#scalars
     # HINT: you can use datetime or django.utils.timezone
+    # TODO 9: Add a field current_date_time and return the current datetime
+
+    # TODO 10: If you have time left: Extend this query with Member
+    # TODO 11: If you have time left: Extend this query with Guest

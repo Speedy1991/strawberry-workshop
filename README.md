@@ -33,7 +33,7 @@ This is the minimum workshop setup. Please prepare the project as described belo
 
 ## Exercise overview
 
-You will have about 10 min per exercise
+You will have about 10 min per exercise. Do not forget to reload your graphiql endpoint after you changed the schema to refelect the changes
 
 - [Exercise 1](https://github.com/Speedy1991/strawberry-workshop/tree/main/exercise1): Write your first TypeDefs and resolvers
 - [Exercise 2](https://github.com/Speedy1991/strawberry-workshop/tree/main/exercise2): Extend your TypeDefs with more complex resolvers
