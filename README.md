@@ -45,7 +45,7 @@ You will have about 10 min per exercise. Do not forget to reload your graphiql e
 
 ## Working through it
 This is a very exercise-heavy workshop. You'll find the exercises in the _strawberry_workshop/exercise[number]_ directory.
-Don't forget to change the used schema in the [urls.py](https://github.com/Speedy1991/strawberry-workshop/blob/master/core/urls.py#L2).
+Don't forget to change the used schema in the [urls.py](https://github.com/Speedy1991/strawberry-workshop/blob/master/core/urls.py#L4).
 
 You find some helpful content on the Docs:
 - [strawberry](https://strawberry.rocks/docs)

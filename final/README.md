@@ -1,6 +1,6 @@
 # Exercise 5
 
-Fix the [urls.py](https://github.com/Speedy1991/strawberry-workshop/blob/master/core/urls.py#L2): `final.schema.schema`
+Fix the [urls.py](https://github.com/Speedy1991/strawberry-workshop/blob/master/core/urls.py#L4): `final.schema.schema`
 
 ## Interfaces
 

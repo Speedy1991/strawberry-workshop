@@ -1,6 +1,6 @@
 # Exercise 4
 
-Fix the [urls.py](https://github.com/Speedy1991/strawberry-workshop/blob/master/core/urls.py#L2): `exercise4.schema.schema`
+Fix the [urls.py](https://github.com/Speedy1991/strawberry-workshop/blob/master/core/urls.py#L4): `exercise4.schema.schema`
 
 ## Query with Arguments and add custom fields
 

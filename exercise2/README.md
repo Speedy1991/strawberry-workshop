@@ -1,6 +1,6 @@
 # Exercise 2
 
-Fix the [urls.py](https://github.com/Speedy1991/strawberry-workshop/blob/master/core/urls.py#L2): `exercise2.schema.schema`
+Fix the [urls.py](https://github.com/Speedy1991/strawberry-workshop/blob/master/core/urls.py#L4): `exercise2.schema.schema`
 
 ## Problem
 At the moment we can't query anything related (e.g. _members_, _guests_, _products_) on the _SocialClubType_

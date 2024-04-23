@@ -1,6 +1,6 @@
 # Exercise 3
 
-Fix the [urls.py](https://github.com/Speedy1991/strawberry-workshop/blob/master/core/urls.py#L2): `exercise3.schema.schema`
+Fix the [urls.py](https://github.com/Speedy1991/strawberry-workshop/blob/master/core/urls.py#L4): `exercise3.schema.schema`
 
 ## Refactor
 
