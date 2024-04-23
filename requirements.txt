@@ -1,0 +1,5 @@
+django==4.2
+strawberry-graphql==0.227.0
+starlette==0.37.2
+gunicorn
+uvicorn
