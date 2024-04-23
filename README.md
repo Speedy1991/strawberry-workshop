@@ -74,7 +74,7 @@ __Discord:__ https://strawberry.rocks/discord (be friendly, this is an awesome c
 
 __Github:__ https://github.com/strawberry-graphql/strawberry
 
-__Creator:__ [Patrick]https://github.com/patrick91 Thank you so much for creating this awesome framework
+__Creator:__ [Patrick](https://github.com/patrick91) Thank you so much for creating this awesome framework
 
 __Core Devs:__ [bellini666](https://github.com/bellini666), [DoctorJohn](https://github.com/DoctorJohn), [erikwrede](https://github.com/erikwrede), [skilkis](https://github.com/skilkis) 
 
