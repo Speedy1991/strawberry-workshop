@@ -37,8 +37,7 @@ query SocialClubWithAtLeast5Members {
 
 mutation CreateProduct {
   createOrUpdateProduct(
-    pk: 1
-    inp: {name: "Product 1", socialClubId: 5, price: 50, quality: GOOD}
+    inp: {pk: 1, name: "Product 1", socialClubId: 5, price: 50, quality: GOOD}
   ) {
     id
     name
