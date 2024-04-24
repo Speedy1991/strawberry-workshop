@@ -1,6 +1,6 @@
 # Exercise 5
 
-Fix the [urls.py](https://github.com/Speedy1991/strawberry-workshop/blob/master/core/urls.py#L4): `exercise5.schema.schema`
+Fix the [urls.py](https://github.com/Speedy1991/strawberry-workshop/blob/main/core/urls.py#L4): `exercise5.schema.schema`
 
 ## Interfaces
 
@@ -8,8 +8,8 @@ Let's write our first interface. For less boilerplate I added a `socialClub(pk: 
 
 ## TODO
 
-- [query.py](https://github.com/Speedy1991/strawberry-workshop/blob/master/exercise5/schema/types.py)
-- [schema.py](https://github.com/Speedy1991/strawberry-workshop/blob/master/exercise5/schema/schema.py)
+- [query.py](https://github.com/Speedy1991/strawberry-workshop/blob/main/exercise5/schema/types.py)
+- [schema.py](https://github.com/Speedy1991/strawberry-workshop/blob/main/exercise5/schema/schema.py)
 
 
 ## Sample

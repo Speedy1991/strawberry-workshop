@@ -1,6 +1,6 @@
 # Exercise 5
 
-Fix the [urls.py](https://github.com/Speedy1991/strawberry-workshop/blob/master/core/urls.py#L4): `final.schema.schema`
+Fix the [urls.py](https://github.com/Speedy1991/strawberry-workshop/blob/main/core/urls.py#L4): `final.schema.schema`
 
 ## Interfaces
 
@@ -20,4 +20,4 @@ The clean API separation also means it's easier to understand each component in 
 
 ## TODO
 
-- [asgi.py](https://github.com/Speedy1991/strawberry-workshop/blob/master/strawberry_workshop/asgi.py)
+- [asgi.py](https://github.com/Speedy1991/strawberry-workshop/blob/main/strawberry_workshop/asgi.py)

@@ -1,6 +1,6 @@
 # Exercise 4
 
-Fix the [urls.py](https://github.com/Speedy1991/strawberry-workshop/blob/master/core/urls.py#L4): `exercise4.schema.schema`
+Fix the [urls.py](https://github.com/Speedy1991/strawberry-workshop/blob/main/core/urls.py#L4): `exercise4.schema.schema`
 
 ## Query with Arguments and add custom fields
 
@@ -55,7 +55,7 @@ mutation CreateProduct {
 
 ## TODO
 
-- [types.py](https://github.com/Speedy1991/strawberry-workshop/blob/master/exercise4/schema/types.py)
-- [query.py](https://github.com/Speedy1991/strawberry-workshop/blob/master/exercise4/schema/query.py)
-- [mutation.py](https://github.com/Speedy1991/strawberry-workshop/blob/master/exercise4/schema/mutation.py)
+- [types.py](https://github.com/Speedy1991/strawberry-workshop/blob/main/exercise4/schema/types.py)
+- [query.py](https://github.com/Speedy1991/strawberry-workshop/blob/main/exercise4/schema/query.py)
+- [mutation.py](https://github.com/Speedy1991/strawberry-workshop/blob/main/exercise4/schema/mutation.py)
 

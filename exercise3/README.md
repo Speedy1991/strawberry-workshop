@@ -1,6 +1,6 @@
 # Exercise 3
 
-Fix the [urls.py](https://github.com/Speedy1991/strawberry-workshop/blob/master/core/urls.py#L4): `exercise3.schema.schema`
+Fix the [urls.py](https://github.com/Speedy1991/strawberry-workshop/blob/main/core/urls.py#L4): `exercise3.schema.schema`
 
 ## Refactor
 
@@ -11,7 +11,7 @@ We have a lot of boilerplate code - we can do better!! Use two approaches:
 
 ## TODO
 
-- [types.py](https://github.com/Speedy1991/strawberry-workshop/blob/master/exercise3/schema/types.py)
+- [types.py](https://github.com/Speedy1991/strawberry-workshop/blob/main/exercise3/schema/types.py)
 
 ## Questions
 

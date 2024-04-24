@@ -1,13 +1,13 @@
 # Exercise 1
 
-Fix the [urls.py](https://github.com/Speedy1991/strawberry-workshop/blob/master/core/urls.py#L4): `exercise1.schema.schema`
+Fix the [urls.py](https://github.com/Speedy1991/strawberry-workshop/blob/main/core/urls.py#L4): `exercise1.schema.schema`
 
 ## 1) Write TypeDefs
-- Open [types.py](https://github.com/Speedy1991/strawberry-workshop/blob/master/exercise1/schema/types.py)
+- Open [types.py](https://github.com/Speedy1991/strawberry-workshop/blob/main/exercise1/schema/types.py)
 - Fill the fields with the related scalar types
 
 ## 2) Write resolvers
-- [query.py](https://github.com/Speedy1991/strawberry-workshop/blob/master/exercise1/schema/query.py)
+- [query.py](https://github.com/Speedy1991/strawberry-workshop/blob/main/exercise1/schema/query.py)
 
 ## Questions
 
