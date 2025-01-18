@@ -1,5 +1,7 @@
-django==4.2
-strawberry-graphql==0.227.0
-starlette==0.37.2
+django==5.1.5
+strawberry-graphql==0.258.0
+starlette==0.40.0
 gunicorn
 uvicorn
+websockets==14.1
+pygments

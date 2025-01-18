@@ -122,4 +122,3 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-STRAWBERRY_GRAPHQL_IDE = 'graphiql'
