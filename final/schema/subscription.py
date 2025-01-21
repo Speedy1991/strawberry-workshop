@@ -12,6 +12,6 @@ class Subscription:
         try:
             for i in range(target):
                 yield i
-                await asyncio.sleep(5)
+                await asyncio.sleep(2)
         except asyncio.CancelledError:
             pass

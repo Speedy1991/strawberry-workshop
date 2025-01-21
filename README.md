@@ -24,6 +24,11 @@ This is the minimum workshop setup. Please prepare the project as described belo
 - `python manage.py loaddata assets/data.json` (_Installed 206 object(s) from 1 fixture(s)_)
 - `python manage.py runserver`
 
+#### Frontend
+- `cd frontend`
+- `yarn`
+- `yarn dev`
+
 #### Test your setup
 - Open your browser and visit `http://127.0.0.1:8000/admin/` and try to login with `root:toor`
 - The GraphiQL endpoint is at `http://127.0.0.1:8000/graphql/`
@@ -40,6 +45,8 @@ You will have about 10 min per exercise. Do not forget to reload your graphiql e
 - [Exercise 3](https://github.com/Speedy1991/strawberry-workshop/tree/main/exercise3): Refactor
 - [Exercise 4](https://github.com/Speedy1991/strawberry-workshop/tree/main/exercise4): Write a mutation; Add Field Arguments
 - [Exercise 5](https://github.com/Speedy1991/strawberry-workshop/tree/main/exercise5): Interfaces
+- [Exercise 6](https://github.com/Speedy1991/strawberry-workshop/tree/main/exercise6): Dataloaders
+- [Exercise 7](https://github.com/Speedy1991/strawberry-workshop/tree/main/exercise7): Subscriptions
 - Let's talk about ASGI/Starlette and so on
 - Homework: Check out [strawberry-django](https://github.com/strawberry-graphql/strawberry-django)
 
