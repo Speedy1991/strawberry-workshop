@@ -28,11 +28,12 @@ This is the minimum workshop setup. Please prepare the project as described belo
 #### Frontend
 - `cd frontend`
 - `yarn`
+- `yarn build`
 - `yarn dev`
 
 #### Test your setup
 - Open your browser and visit `http://127.0.0.1:8000/admin/` and try to login with `root:toor`
-- The GraphiQL endpoint is at `http://127.0.0.1:8000/graphql/`
+- The GraphiQL endpoint is at `http://127.0.0.1:8000/graphiql/`
 
 ----
 
