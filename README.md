@@ -1,13 +1,5 @@
 # Introduction to GraphQL and Strawberry
 
-
-## Workshop Outline
-- _TypeDefs_
-- _Query_
-- _Mutation_
-- _GraphQL Schema Language_
-
-
 #### System Requirements
 - [git](https://git-scm.com/) v2 or greater
 - [python3.11](https://www.python.org/downloads/) or greater + pip (maybe a lower version will work too - please try it yourself)
@@ -24,7 +16,7 @@ This is the minimum workshop setup. Please prepare the project as described belo
 - `pip install -r requirements.txt`
 - `python manage.py migrate`
 - `python manage.py loaddata assets/data.json` (_Installed 206 object(s) from 1 fixture(s)_)
-- `python asgi_server`
+- `python asgi_server.py`
 
 #### Frontend
 - `cd frontend`
