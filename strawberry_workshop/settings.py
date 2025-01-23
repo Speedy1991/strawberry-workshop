@@ -1,7 +1,7 @@
 import os
 from pathlib import Path
 
-CURRENT_EXERCISE = 'final'
+CURRENT_EXERCISE = 'exercise1'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-_c_a$6_ni9a%rqu647x(^2=rw7s&9^+z5_be8(6h&gk71jk#so'

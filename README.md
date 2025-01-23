@@ -11,6 +11,7 @@
 #### System Requirements
 - [git](https://git-scm.com/) v2 or greater
 - [python3.11](https://www.python.org/downloads/) or greater + pip (maybe a lower version will work too - please try it yourself)
+- [docker](https://docs.docker.com/get-started/get-docker/) for redis
 
 ----
 This is the minimum workshop setup. Please prepare the project as described below.
@@ -22,7 +23,7 @@ This is the minimum workshop setup. Please prepare the project as described belo
 - `pip install -r requirements.txt`
 - `python manage.py migrate`
 - `python manage.py loaddata assets/data.json` (_Installed 206 object(s) from 1 fixture(s)_)
-- `python manage.py runserver`
+- `python asgi_server`
 
 #### Frontend
 - `cd frontend`
