@@ -19,6 +19,7 @@ This is the minimum workshop setup. Please prepare the project as described belo
 #### Pre-Workshop Instructions/Requirements (install)
 - `git clone https://github.com/Speedy1991/strawberry-workshop.git`
 - `cd strawberry-workshop`
+- `docker compose up --force-recreate --build -d`
 - If you want to use a virtual environment click [here](https://virtualenv.pypa.io/en/latest/user_guide.html) for instructions 
 - `pip install -r requirements.txt`
 - `python manage.py migrate`
