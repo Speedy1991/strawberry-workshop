@@ -6,7 +6,7 @@ from django.utils import timezone
 from strawberry import Info
 
 from core.models import SocialClub, Product
-from exercise2.schema.types import SocialClubType, MemberType, GuestType, ProductType
+from .types import SocialClubType, MemberType, GuestType, ProductType
 
 
 @strawberry.type
@@ -42,7 +42,7 @@ class Query:
                 social_club=sc
             ) for member in sc.member_set.all()]
         ) for sc in SocialClub.objects.prefetch_related('member_set', 'guest_set', 'product_set')]
-        # QUESTION: what would happen if we remove the prefetch related?
+        # ❓what would happen if we remove the prefetch related?
 
     @strawberry.field
     def products(self, info: Info) -> List[ProductType]:

@@ -1,0 +1,11 @@
+query SocialClub($pk: ID!) {
+    socialClub(pk: $pk) {
+        ...SocialClub
+    }
+}
+
+query SocialClubs {
+    socialClubs {
+        ...SocialClub
+    }
+}

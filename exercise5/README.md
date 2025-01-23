@@ -1,6 +1,6 @@
 # Exercise 5
 
-Fix the [urls.py](https://github.com/Speedy1991/strawberry-workshop/blob/main/core/urls.py#L4): `exercise5.schema.schema`
+Fix the [settings.py](https://github.com/Speedy1991/strawberry-workshop/blob/main/strawberry_workshop/settings.py#L4): `exercise5`
 
 ## Interfaces
 

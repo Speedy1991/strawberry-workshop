@@ -7,20 +7,20 @@ from django.utils import timezone
 from strawberry import Info
 
 from core.models import SocialClub, Product
-from exercise4.schema.types import (SocialClubType, ProductType)
+from .types import SocialClubType, ProductType
 
 
 @strawberry.type
 class Query:
 
-    # TODO 1: Add arguments to the field
-    # DOCS: https://strawberry.rocks/docs/general/queries#arguments
+    # 🛠️Add arguments to the field
+    # 📜https://strawberry.rocks/docs/general/queries#arguments
     @strawberry.field
     def social_clubs(self, info: Info) -> List[SocialClubType]:
-        min_member_count = None  # TODO 1.1: Remove this line
+        min_member_count = None  # 🛠️ 1.1: Remove this line
         qs = SocialClub.objects.all()
         if min_member_count is not None:
-            # QUESTION/DJANGO: Filtering will destroy our prefetch - is there a performance workaround? Is there a tradeoff?
+            # ❓Filtering will destroy our prefetch - is there a performance workaround? Is there a tradeoff?
             qs = qs.annotate(member_count=Count('member')).filter(member_count__gte=min_member_count)
         return [SocialClubType(instance=sc) for sc in qs]
 

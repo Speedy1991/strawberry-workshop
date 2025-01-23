@@ -1,0 +1,30 @@
+schema: 'http://127.0.0.1:8000/graphiql/'
+documents:
+  - 'src/client/*.graphql'
+extensions:
+  codegen:
+    overwrite: true
+    generates:
+      src/client/generated/graphql.ts:
+        plugins:
+          - typescript:
+          - typescript-operations:
+          - typescript-react-apollo:
+        config:
+          avoidOptionals:
+            field: true
+            object: false
+            inputValue: false
+            defaultValue: true
+            resolvers: true
+          onlyOperationTypes: true
+          nonOptionalTypename: true
+      src/client/generated/possibleTypes.ts:
+        plugins:
+          - fragment-matcher:
+      src/client/generated/clientHelpers.ts:
+        plugins:
+          - typescript-apollo-client-helpers:
+    hooks:
+      afterOneFileWrite:
+        - prettier --config .prettierrc --write

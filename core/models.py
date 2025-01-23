@@ -1,6 +1,7 @@
 from django.db import models
 
 from core.choices import QualityChoices
+from core.utils import RedisSingleTone
 
 
 class SocialClub(models.Model):
@@ -8,8 +9,13 @@ class SocialClub(models.Model):
     street = models.CharField(max_length=100)
     zip = models.CharField(max_length=100)
 
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        RedisSingleTone.publish('social_club_create_update', self.id)
+
     def __str__(self):
         return self.name
+
 
 
 class Product(models.Model):
@@ -29,6 +35,11 @@ class Person(models.Model):
 
     def __str__(self):
         return f'{self.first_name} {self.last_name} [{self.social_club}]'
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        RedisSingleTone.publish('social_club_create_update', self.social_club_id)
+
 
     class Meta:
         abstract = True

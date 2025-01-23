@@ -8,7 +8,7 @@ from strawberry import Info
 from core.models import Product
 from core.schema.enums import QualityEnum
 from core.utils import asdict_factory
-from exercise5.schema.types import ProductType
+from .types import ProductType
 
 
 @strawberry.input

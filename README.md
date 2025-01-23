@@ -24,6 +24,11 @@ This is the minimum workshop setup. Please prepare the project as described belo
 - `python manage.py loaddata assets/data.json` (_Installed 206 object(s) from 1 fixture(s)_)
 - `python manage.py runserver`
 
+#### Frontend
+- `cd frontend`
+- `yarn`
+- `yarn dev`
+
 #### Test your setup
 - Open your browser and visit `http://127.0.0.1:8000/admin/` and try to login with `root:toor`
 - The GraphiQL endpoint is at `http://127.0.0.1:8000/graphql/`
@@ -31,7 +36,7 @@ This is the minimum workshop setup. Please prepare the project as described belo
 ----
 
 
-## Exercise overview
+## Exercise overview (python)
 
 You will have about 10 min per exercise. Do not forget to reload your graphiql endpoint after you changed the schema to refelect the changes
 
@@ -40,23 +45,32 @@ You will have about 10 min per exercise. Do not forget to reload your graphiql e
 - [Exercise 3](https://github.com/Speedy1991/strawberry-workshop/tree/main/exercise3): Refactor
 - [Exercise 4](https://github.com/Speedy1991/strawberry-workshop/tree/main/exercise4): Write a mutation; Add Field Arguments
 - [Exercise 5](https://github.com/Speedy1991/strawberry-workshop/tree/main/exercise5): Interfaces
-- Let's talk about ASGI/Starlette and so on
+- [Exercise 6](https://github.com/Speedy1991/strawberry-workshop/tree/main/exercise6): Going Async + Dataloaders
+- [Exercise 7](https://github.com/Speedy1991/strawberry-workshop/tree/main/exercise7): Subscriptions
+- Let's talk about ASGI/Starlette
+- Security & Pitfalls: Query Batching, DoS, Field Exposure, Authorization, Ratelimit, Overfetching, Underfetching, Caching, ReturnCodes, Introspection
 - Homework: Check out [strawberry-django](https://github.com/strawberry-graphql/strawberry-django)
+
+## Exercise overview (frontend)
+- Create types
+- Localcache reads and manipulations
+- Autoupdates with normalized Data
+- Query optimizations (cache redirects, cache first, etc.)
+- Push apollo to it's limits
 
 ## Working through it
 This is a very exercise-heavy workshop. You'll find the exercises in the _strawberry_workshop/exercise[number]_ directory.
-Don't forget to change the used schema in the [urls.py](https://github.com/Speedy1991/strawberry-workshop/blob/main/core/urls.py#L4).
+Don't forget to change the used schema in the [settings.py](https://github.com/Speedy1991/strawberry-workshop/blob/main/strawberry_workshop/settings.py#L4).
 
 You find some helpful content on the Docs:
 - [strawberry](https://strawberry.rocks/docs)
 - [django queries](https://docs.djangoproject.com/en/5.0/topics/db/queries/)
 
 ## Helpful shortcuts
-- _TODO:_ This is **your** job
-- _DOCS:_ This will give you a link to the specific doc page
-- _DJANGO:_ This will help you with some django specific code
-- _HINT:_ This will give you some useful tips
-- _QUESTION:_ Try to answer the question yourself - if you don't find the answer, feel free to ask :)
+- 🛠️ _TODO:_ This is **your** job
+- 📜 _DOCS:_ This will give you a link to the specific doc page
+- 💡 _HINT:_ This will give you some useful tips
+- ❓ _QUESTION:_ Try to answer the question yourself - if you don't find the answer, feel free to ask :)
 
 ## Django Cheatsheet
 - `SELECT * FROM <table>` -> `<ModelName>.objects.all()`
