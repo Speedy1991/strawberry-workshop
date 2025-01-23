@@ -1,4 +1,4 @@
-schema: 'http://127.0.0.1:8000/graphql_no_csrf/'
+schema: 'http://127.0.0.1:8000/graphiql/'
 documents:
   - 'src/client/*.graphql'
 extensions:
@@ -28,4 +28,3 @@ extensions:
     hooks:
       afterOneFileWrite:
         - prettier --config .prettierrc --write
-        - eslint --fix

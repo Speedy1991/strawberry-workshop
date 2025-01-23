@@ -18,7 +18,7 @@ class PatchedBaseGraphQLTransportWSHandler(BaseGraphQLTransportWSHandler):
         request = self.context.request
 
         csrf_token_payload = payload['csrfToken']
-        csrf_middleware = CsrfViewMiddleware(lambda: HttpResponse())
+        csrf_middleware = CsrfViewMiddleware(HttpResponse)
         try:
             csrf_secret = csrf_middleware._get_secret(request)
             _check_token_format(csrf_token_payload)

@@ -8,7 +8,6 @@ from django.utils import timezone
 from strawberry import Info
 
 from core.models import SocialClub, Product
-from core.utils import sta
 from .types import SocialClubType, ProductType
 
 
@@ -25,12 +24,16 @@ class Query:
         qs = SocialClub.objects.all()
         if min_member_count is not None:
             qs = qs.annotate(member_count=Count('member')).filter(member_count__gte=min_member_count)
-        qs = await sta(qs)
+        # TODO 3: This won't work - executing a query in an async context will make django cry
+        # HINT: use the `sta` helper from core.utils
+        # QUESTION: Why does line 25 work?
         return [SocialClubType(instance=sc) for sc in qs]
 
     @strawberry.field
     async def products(self, info: Info) -> List[ProductType]:
-        products = await sta(Product.objects.all())
+        # TODO 3.1: This won't work - executing a query in an async context will make django cry
+        # HINT: use the `sta` helper from core.utils
+        products = Product.objects.all()
         return await asyncio.gather(*[ProductType.async_from_obj(info, product) for product in products])
 
     @strawberry.field

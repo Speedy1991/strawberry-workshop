@@ -6,7 +6,7 @@ from django.utils import timezone
 from strawberry import Info
 
 from core.models import SocialClub, Product
-from exercise3.schema.types import SocialClubType, ProductType
+from .types import SocialClubType, ProductType
 
 
 @strawberry.type

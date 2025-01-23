@@ -1,0 +1,15 @@
+fragment Person on PersonInterface {
+    id
+    firstName
+    lastName
+}
+
+fragment SocialClub on SocialClubType {
+    id
+    name
+    street
+    zip
+    persons {
+        ...Person
+    }
+}

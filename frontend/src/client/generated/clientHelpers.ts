@@ -50,9 +50,10 @@ export type SocialClubTypeFieldPolicy = {
 	street?: FieldPolicy<any> | FieldReadFunction<any>,
 	zip?: FieldPolicy<any> | FieldReadFunction<any>
 };
-export type SubscriptionKeySpecifier = ('count' | SubscriptionKeySpecifier)[];
+export type SubscriptionKeySpecifier = ('count' | 'currentTime' | SubscriptionKeySpecifier)[];
 export type SubscriptionFieldPolicy = {
-	count?: FieldPolicy<any> | FieldReadFunction<any>
+	count?: FieldPolicy<any> | FieldReadFunction<any>,
+	currentTime?: FieldPolicy<any> | FieldReadFunction<any>
 };
 export type StrictTypedTypePolicies = {
 	GuestType?: Omit<TypePolicy, "fields" | "keyFields"> & {

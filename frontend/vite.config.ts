@@ -30,7 +30,7 @@ export default defineConfig({
             output: {
                 manualChunks: {
                     react: ['react', 'react-dom'],
-                    apollo: ['@apollo/client', 'graphql-ws', 'apollo-upload-client'],
+                    apollo: ['@apollo/client', 'graphql-ws', 'apollo-upload-client', 'react-router'],
                 },
             },
         },

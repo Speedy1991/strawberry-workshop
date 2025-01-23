@@ -32,4 +32,4 @@ class Mutation:
         for k, v in asdict(inp, dict_factory=asdict_factory).items():
             setattr(product, k, v)
         await product.asave()
-        return await ProductType.async_from_obj(product)
+        return await ProductType.async_from_obj(info, product)

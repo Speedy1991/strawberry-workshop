@@ -5,7 +5,7 @@ from django.db import transaction
 from strawberry import Info
 
 from core.models import Product
-from exercise4.schema.types import (ProductType)
+from .types import ProductType
 
 
 # QUESTION: What is the advantage of using an input type vs method arguments?

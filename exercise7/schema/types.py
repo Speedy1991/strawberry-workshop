@@ -33,8 +33,10 @@ class SocialClubType:
 
     @strawberry.field
     async def persons(self, info: Info) -> List["PersonInterface"]:
-        members_and_guests = [*await sta(self.instance.member_set.all()), *await sta(self.instance.guest_set.all())]
-        return await asyncio.gather(*[PersonInterface.async_from_obj(info, mag) for mag in members_and_guests])
+        members = await sta(self.instance.member_set.all())
+        guests = await sta(self.instance.guest_set.all())
+        people = [*members, *guests]
+        return await asyncio.gather(*[PersonInterface.async_from_obj(info, person) for person in people])
 
     @strawberry.field
     async def products(self, info: Info) -> List["ProductType"]:

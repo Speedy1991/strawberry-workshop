@@ -10,53 +10,112 @@ export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' |
 const defaultOptions = {} as const;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
-  ID: { input: string; output: string; }
-  String: { input: string; output: string; }
-  Boolean: { input: boolean; output: boolean; }
-  Int: { input: number; output: number; }
-  Float: { input: number; output: number; }
-  DateTime: { input: any; output: any; }
+    ID: { input: string; output: string };
+    String: { input: string; output: string };
+    Boolean: { input: boolean; output: boolean };
+    Int: { input: number; output: number };
+    Float: { input: number; output: number };
+    DateTime: { input: any; output: any };
 };
 
 export type ProductInput = {
-  name: Scalars['String']['input'];
-  price: Scalars['Int']['input'];
-  quality: QualityEnum;
-  socialClubId: Scalars['ID']['input'];
+    name: Scalars['String']['input'];
+    price: Scalars['Int']['input'];
+    quality: QualityEnum;
+    socialClubId: Scalars['ID']['input'];
 };
 
 export enum QualityEnum {
-  Bad = 'BAD',
-  Good = 'GOOD',
-  Ok = 'OK'
+    Bad = 'BAD',
+    Good = 'GOOD',
+    Ok = 'OK',
 }
+
+type Person_GuestType_Fragment = { __typename: 'GuestType'; id: string; firstName: string; lastName: string };
+
+type Person_MemberType_Fragment = { __typename: 'MemberType'; id: string; firstName: string; lastName: string };
+
+export type PersonFragment = Person_GuestType_Fragment | Person_MemberType_Fragment;
+
+export type SocialClubFragment = {
+    __typename: 'SocialClubType';
+    id: string;
+    name: string;
+    street: string;
+    zip: string;
+    persons: Array<
+        | { __typename: 'GuestType'; id: string; firstName: string; lastName: string }
+        | { __typename: 'MemberType'; id: string; firstName: string; lastName: string }
+    >;
+};
 
 export type SocialClubQueryVariables = Exact<{
-  pk: Scalars['ID']['input'];
+    pk: Scalars['ID']['input'];
 }>;
 
+export type SocialClubQuery = {
+    __typename: 'Query';
+    socialClub: {
+        __typename: 'SocialClubType';
+        id: string;
+        name: string;
+        street: string;
+        zip: string;
+        persons: Array<
+            | { __typename: 'GuestType'; id: string; firstName: string; lastName: string }
+            | { __typename: 'MemberType'; id: string; firstName: string; lastName: string }
+        >;
+    };
+};
 
-export type SocialClubQuery = { __typename: 'Query', socialClub: { __typename: 'SocialClubType', id: string, name: string, persons: Array<{ __typename: 'GuestType', id: string, firstName: string, lastName: string } | { __typename: 'MemberType', id: string, firstName: string, lastName: string }> } };
+export type SocialClubsQueryVariables = Exact<{ [key: string]: never }>;
 
-export type CounterSubscriptionVariables = Exact<{ [key: string]: never; }>;
+export type SocialClubsQuery = {
+    __typename: 'Query';
+    socialClubs: Array<{
+        __typename: 'SocialClubType';
+        id: string;
+        name: string;
+        street: string;
+        zip: string;
+        persons: Array<
+            | { __typename: 'GuestType'; id: string; firstName: string; lastName: string }
+            | { __typename: 'MemberType'; id: string; firstName: string; lastName: string }
+        >;
+    }>;
+};
 
+export type CounterSubscriptionVariables = Exact<{ [key: string]: never }>;
 
-export type CounterSubscription = { __typename: 'Subscription', count: number };
+export type CounterSubscription = { __typename: 'Subscription'; count: number };
 
-
+export const PersonFragmentDoc = gql`
+    fragment Person on PersonInterface {
+        id
+        firstName
+        lastName
+    }
+`;
+export const SocialClubFragmentDoc = gql`
+    fragment SocialClub on SocialClubType {
+        id
+        name
+        street
+        zip
+        persons {
+            ...Person
+        }
+    }
+    ${PersonFragmentDoc}
+`;
 export const SocialClubDocument = gql`
     query SocialClub($pk: ID!) {
-  socialClub(pk: $pk) {
-    id
-    name
-    persons {
-      id
-      firstName
-      lastName
+        socialClub(pk: $pk) {
+            ...SocialClub
+        }
     }
-  }
-}
-    `;
+    ${SocialClubFragmentDoc}
+`;
 
 /**
  * __useSocialClubQuery__
@@ -74,27 +133,74 @@ export const SocialClubDocument = gql`
  *   },
  * });
  */
-export function useSocialClubQuery(baseOptions: Apollo.QueryHookOptions<SocialClubQuery, SocialClubQueryVariables> & ({ variables: SocialClubQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<SocialClubQuery, SocialClubQueryVariables>(SocialClubDocument, options);
-      }
+export function useSocialClubQuery(
+    baseOptions: Apollo.QueryHookOptions<SocialClubQuery, SocialClubQueryVariables> &
+        ({ variables: SocialClubQueryVariables; skip?: boolean } | { skip: boolean })
+) {
+    const options = { ...defaultOptions, ...baseOptions };
+    return Apollo.useQuery<SocialClubQuery, SocialClubQueryVariables>(SocialClubDocument, options);
+}
 export function useSocialClubLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<SocialClubQuery, SocialClubQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<SocialClubQuery, SocialClubQueryVariables>(SocialClubDocument, options);
-        }
-export function useSocialClubSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<SocialClubQuery, SocialClubQueryVariables>) {
-          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
-          return Apollo.useSuspenseQuery<SocialClubQuery, SocialClubQueryVariables>(SocialClubDocument, options);
-        }
+    const options = { ...defaultOptions, ...baseOptions };
+    return Apollo.useLazyQuery<SocialClubQuery, SocialClubQueryVariables>(SocialClubDocument, options);
+}
+export function useSocialClubSuspenseQuery(
+    baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<SocialClubQuery, SocialClubQueryVariables>
+) {
+    const options = baseOptions === Apollo.skipToken ? baseOptions : { ...defaultOptions, ...baseOptions };
+    return Apollo.useSuspenseQuery<SocialClubQuery, SocialClubQueryVariables>(SocialClubDocument, options);
+}
 export type SocialClubQueryHookResult = ReturnType<typeof useSocialClubQuery>;
 export type SocialClubLazyQueryHookResult = ReturnType<typeof useSocialClubLazyQuery>;
 export type SocialClubSuspenseQueryHookResult = ReturnType<typeof useSocialClubSuspenseQuery>;
 export type SocialClubQueryResult = Apollo.QueryResult<SocialClubQuery, SocialClubQueryVariables>;
+export const SocialClubsDocument = gql`
+    query SocialClubs {
+        socialClubs {
+            ...SocialClub
+        }
+    }
+    ${SocialClubFragmentDoc}
+`;
+
+/**
+ * __useSocialClubsQuery__
+ *
+ * To run a query within a React component, call `useSocialClubsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useSocialClubsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useSocialClubsQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useSocialClubsQuery(baseOptions?: Apollo.QueryHookOptions<SocialClubsQuery, SocialClubsQueryVariables>) {
+    const options = { ...defaultOptions, ...baseOptions };
+    return Apollo.useQuery<SocialClubsQuery, SocialClubsQueryVariables>(SocialClubsDocument, options);
+}
+export function useSocialClubsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<SocialClubsQuery, SocialClubsQueryVariables>) {
+    const options = { ...defaultOptions, ...baseOptions };
+    return Apollo.useLazyQuery<SocialClubsQuery, SocialClubsQueryVariables>(SocialClubsDocument, options);
+}
+export function useSocialClubsSuspenseQuery(
+    baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<SocialClubsQuery, SocialClubsQueryVariables>
+) {
+    const options = baseOptions === Apollo.skipToken ? baseOptions : { ...defaultOptions, ...baseOptions };
+    return Apollo.useSuspenseQuery<SocialClubsQuery, SocialClubsQueryVariables>(SocialClubsDocument, options);
+}
+export type SocialClubsQueryHookResult = ReturnType<typeof useSocialClubsQuery>;
+export type SocialClubsLazyQueryHookResult = ReturnType<typeof useSocialClubsLazyQuery>;
+export type SocialClubsSuspenseQueryHookResult = ReturnType<typeof useSocialClubsSuspenseQuery>;
+export type SocialClubsQueryResult = Apollo.QueryResult<SocialClubsQuery, SocialClubsQueryVariables>;
 export const CounterDocument = gql`
     subscription Counter {
-  count
-}
-    `;
+        count
+    }
+`;
 
 /**
  * __useCounterSubscription__
@@ -112,8 +218,8 @@ export const CounterDocument = gql`
  * });
  */
 export function useCounterSubscription(baseOptions?: Apollo.SubscriptionHookOptions<CounterSubscription, CounterSubscriptionVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useSubscription<CounterSubscription, CounterSubscriptionVariables>(CounterDocument, options);
-      }
+    const options = { ...defaultOptions, ...baseOptions };
+    return Apollo.useSubscription<CounterSubscription, CounterSubscriptionVariables>(CounterDocument, options);
+}
 export type CounterSubscriptionHookResult = ReturnType<typeof useCounterSubscription>;
 export type CounterSubscriptionResult = Apollo.SubscriptionResult<CounterSubscription>;

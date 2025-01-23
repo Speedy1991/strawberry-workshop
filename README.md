@@ -45,14 +45,15 @@ You will have about 10 min per exercise. Do not forget to reload your graphiql e
 - [Exercise 3](https://github.com/Speedy1991/strawberry-workshop/tree/main/exercise3): Refactor
 - [Exercise 4](https://github.com/Speedy1991/strawberry-workshop/tree/main/exercise4): Write a mutation; Add Field Arguments
 - [Exercise 5](https://github.com/Speedy1991/strawberry-workshop/tree/main/exercise5): Interfaces
-- [Exercise 6](https://github.com/Speedy1991/strawberry-workshop/tree/main/exercise6): Dataloaders
+- [Exercise 6](https://github.com/Speedy1991/strawberry-workshop/tree/main/exercise6): Going Async + Dataloaders
 - [Exercise 7](https://github.com/Speedy1991/strawberry-workshop/tree/main/exercise7): Subscriptions
 - Let's talk about ASGI/Starlette and so on
+- Frontend Fun :)
 - Homework: Check out [strawberry-django](https://github.com/strawberry-graphql/strawberry-django)
 
 ## Working through it
 This is a very exercise-heavy workshop. You'll find the exercises in the _strawberry_workshop/exercise[number]_ directory.
-Don't forget to change the used schema in the [urls.py](https://github.com/Speedy1991/strawberry-workshop/blob/main/core/urls.py#L4).
+Don't forget to change the used schema in the [settings.py](https://github.com/Speedy1991/strawberry-workshop/blob/main/strawberry_workshop/settings.py#L4).
 
 You find some helpful content on the Docs:
 - [strawberry](https://strawberry.rocks/docs)

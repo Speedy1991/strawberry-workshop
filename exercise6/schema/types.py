@@ -33,8 +33,11 @@ class SocialClubType:
 
     @strawberry.field
     async def persons(self, info: Info) -> List["PersonInterface"]:
-        members_and_guests = [*await sta(self.instance.member_set.all()), *await sta(self.instance.guest_set.all())]
-        return await asyncio.gather(*[PersonInterface.async_from_obj(info, mag) for mag in members_and_guests])
+        # TODO 4: Can you write a dataloader for members and guests?
+        members = await sta(self.instance.member_set.all())
+        guests = await sta(self.instance.guest_set.all())
+        people = [*members, *guests]
+        return await asyncio.gather(*[PersonInterface.async_from_obj(info, person) for person in people])
 
     @strawberry.field
     async def products(self, info: Info) -> List["ProductType"]:
@@ -50,6 +53,8 @@ class ProductType:
     quality: QualityEnum
     social_club: SocialClubType
 
+    # HINT: This is not a "must have async" - but maybe we want to access some async data later? Or gather some ProductType's?
+    # HINT: It's also nice to have the info object to access the context/request
     @classmethod
     async def async_from_obj(cls, info: Info, product: "Product") -> "ProductType":
         return ProductType(
@@ -71,6 +76,7 @@ class PersonInterface:
     @classmethod
     async def async_from_obj(cls, info: Info, obj: Union["Member", "Guest"]) -> "PersonInterface":
         from core.models import Member, Guest
+        # QUESTION: Why can't we use obj.social_club? Is there a workaround?
         social_club = await info.context['social_club_loader'].load(obj.social_club_id)
         kwargs = dict(id=obj.id, first_name=obj.first_name, last_name=obj.last_name, social_club=SocialClubType(instance=social_club))
         if isinstance(obj, Member):

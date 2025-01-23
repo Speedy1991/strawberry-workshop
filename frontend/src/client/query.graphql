@@ -1,11 +1,11 @@
 query SocialClub($pk: ID!) {
-  socialClub(pk: $pk) {
-    id
-    name
-    persons{
-      id
-      firstName
-      lastName
+    socialClub(pk: $pk) {
+        ...SocialClub
     }
-  }
+}
+
+query SocialClubs {
+    socialClubs {
+        ...SocialClub
+    }
 }
