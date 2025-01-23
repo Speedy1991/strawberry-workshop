@@ -10,7 +10,7 @@ if TYPE_CHECKING:
     from core.models import SocialClub, Member, Guest, Product
 
 
-# DOCS https://strawberry.rocks/docs/types/private
+# 📜https://strawberry.rocks/docs/types/private
 
 @strawberry.type
 class SocialClubType:
@@ -32,14 +32,14 @@ class SocialClubType:
     def zip(self, info: Info) -> str:
         return self.instance.zip
 
-    # TODO 2: Add arguments to the field
-    # DOCS: https://strawberry.rocks/docs/general/queries#arguments
+    # 🛠️Add arguments to the field
+    # 📜https://strawberry.rocks/docs/general/queries#arguments
     @strawberry.field
     def members(self, info: Info) -> List["MemberType"]:
-        starts_with = None # TODO 2.1: remove this line
+        starts_with = None # 🛠️remove this line
         qs = self.instance.member_set.all()
         if starts_with is not None:
-            # QUESTION/DJANGO: Filtering will destroy our prefetch - is there a performance workaround? Is there a tradeoff?
+            # ❓Filtering will destroy our prefetch - is there a performance workaround? Is there a tradeoff?
             qs = qs.filter(first_name__istartswith=starts_with)
         return [MemberType.from_obj(member) for member in qs]
 
@@ -75,7 +75,7 @@ class ProductType:
                 name=product.name,
                 price=product.price,
                 quality=product.quality,
-                social_club=SocialClubType(instance=product.social_club)  # QUESTION: Could this lead to an N+1 problem with the current query definition? Is there a workaround?
+                social_club=SocialClubType(instance=product.social_club)  # ❓: Could this lead to an N+1 problem with the current query definition? Is there a workaround?
             )
 
 

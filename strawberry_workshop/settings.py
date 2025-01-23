@@ -96,3 +96,5 @@ STATICFILES_DIRS = [
     os.path.realpath(os.path.join(BASE_DIR, 'static')),
 ]
 
+REDIS_HOST = '127.0.0.1'
+REDIS_PORT = 6379

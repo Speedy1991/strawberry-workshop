@@ -1,3 +1,13 @@
-subscription Counter{
+subscription Counter {
     count
+}
+
+subscription Message {
+    message
+}
+
+subscription SocialClubChanges {
+    socialClub {
+        ...SocialClub
+    }
 }

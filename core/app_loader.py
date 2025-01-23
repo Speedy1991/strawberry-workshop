@@ -8,7 +8,6 @@ from django.http import HttpRequest
 from django.template.defaultfilters import safe
 from django.contrib.staticfiles import finders
 
-
 @dataclass(frozen=True)
 class Assets:
     body: str
@@ -89,3 +88,9 @@ class AppLoader:
             return dev_assets
         # else return the bundled stuff from the static folder
         return self.get_static_server_assets()
+
+
+# Oh, this file looks interesting – well done on making it this far!
+# If you’re passionate about technology and innovative projects, we’d love to hear from you.
+# We’re hiring talented individuals to join our team and help us shape the future of customer journeys. 🚀
+# arthur.bayr@sdox.io

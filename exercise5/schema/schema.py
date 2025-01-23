@@ -15,7 +15,7 @@ schema = strawberry.Schema(
         ValidationCache(),
         MaskErrors()
     ],
-    # TODO 8: expose possible types
-    # DOCS: https://strawberry.rocks/docs/types/interfaces#implementing-interfaces
+    # 🛠️expose possible types
+    # 📜https://strawberry.rocks/docs/types/interfaces#implementing-interfaces
     # types=possible_types
 )

@@ -21,14 +21,14 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'strawberry_workshop.settings')
 
 def get_application():
     django.setup()
-    # HINT: Yea we serve ASGIStaticFiles, in a prod environment a reverse proxy should be used leading to /static will never hit the django server in prod
+    # 💡: Yea we serve ASGIStaticFiles, in a prod environment a reverse proxy should be used leading to /static will never hit the django server in prod
     return ASGIStaticFilesHandler(ASGIHandler())
 
-# HINT: This is very raw code for max performance and highest adaptability
-# HINT: This will also work with a starlette Router and use Django as a middleware application
-# HINT: DO NOT USE THIS IN PRODUCTION - there is not a single rate limiting implemented -> DDOS
-# DOCS: Example ratelimiter: https://django-ratelimit.readthedocs.io/en/stable/
-# HINT: You should really know what you do if you mess with the asgi handler yourself :)
+# 💡: This is very raw code for max performance and highest adaptability
+# 💡: This will also work with a starlette Router and use Django as a middleware application
+# 💡: DO NOT USE THIS IN PRODUCTION - there is not a single rate limiting implemented -> DDOS
+# 📜 Example ratelimiter: https://django-ratelimit.readthedocs.io/en/stable/
+# 💡: You should really know what you do if you mess with the asgi handler yourself :)
 def router(app):
     async def asgi(scope, receive, send):
         if scope["type"] == "websocket":
@@ -48,7 +48,6 @@ def router(app):
         try:
             await app(scope, receive, send)
         except Exception as e:
-            # Todo some custom error handling?
             raise e
     return asgi
 

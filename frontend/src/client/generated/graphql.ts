@@ -89,6 +89,27 @@ export type CounterSubscriptionVariables = Exact<{ [key: string]: never }>;
 
 export type CounterSubscription = { __typename: 'Subscription'; count: number };
 
+export type MessageSubscriptionVariables = Exact<{ [key: string]: never }>;
+
+export type MessageSubscription = { __typename: 'Subscription'; message: string };
+
+export type SocialClubChangesSubscriptionVariables = Exact<{ [key: string]: never }>;
+
+export type SocialClubChangesSubscription = {
+    __typename: 'Subscription';
+    socialClub: {
+        __typename: 'SocialClubType';
+        id: string;
+        name: string;
+        street: string;
+        zip: string;
+        persons: Array<
+            | { __typename: 'GuestType'; id: string; firstName: string; lastName: string }
+            | { __typename: 'MemberType'; id: string; firstName: string; lastName: string }
+        >;
+    };
+};
+
 export const PersonFragmentDoc = gql`
     fragment Person on PersonInterface {
         id
@@ -223,3 +244,65 @@ export function useCounterSubscription(baseOptions?: Apollo.SubscriptionHookOpti
 }
 export type CounterSubscriptionHookResult = ReturnType<typeof useCounterSubscription>;
 export type CounterSubscriptionResult = Apollo.SubscriptionResult<CounterSubscription>;
+export const MessageDocument = gql`
+    subscription Message {
+        message
+    }
+`;
+
+/**
+ * __useMessageSubscription__
+ *
+ * To run a query within a React component, call `useMessageSubscription` and pass it any options that fit your needs.
+ * When your component renders, `useMessageSubscription` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the subscription, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useMessageSubscription({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useMessageSubscription(baseOptions?: Apollo.SubscriptionHookOptions<MessageSubscription, MessageSubscriptionVariables>) {
+    const options = { ...defaultOptions, ...baseOptions };
+    return Apollo.useSubscription<MessageSubscription, MessageSubscriptionVariables>(MessageDocument, options);
+}
+export type MessageSubscriptionHookResult = ReturnType<typeof useMessageSubscription>;
+export type MessageSubscriptionResult = Apollo.SubscriptionResult<MessageSubscription>;
+export const SocialClubChangesDocument = gql`
+    subscription SocialClubChanges {
+        socialClub {
+            ...SocialClub
+        }
+    }
+    ${SocialClubFragmentDoc}
+`;
+
+/**
+ * __useSocialClubChangesSubscription__
+ *
+ * To run a query within a React component, call `useSocialClubChangesSubscription` and pass it any options that fit your needs.
+ * When your component renders, `useSocialClubChangesSubscription` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the subscription, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useSocialClubChangesSubscription({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useSocialClubChangesSubscription(
+    baseOptions?: Apollo.SubscriptionHookOptions<SocialClubChangesSubscription, SocialClubChangesSubscriptionVariables>
+) {
+    const options = { ...defaultOptions, ...baseOptions };
+    return Apollo.useSubscription<SocialClubChangesSubscription, SocialClubChangesSubscriptionVariables>(
+        SocialClubChangesDocument,
+        options
+    );
+}
+export type SocialClubChangesSubscriptionHookResult = ReturnType<typeof useSocialClubChangesSubscription>;
+export type SocialClubChangesSubscriptionResult = Apollo.SubscriptionResult<SocialClubChangesSubscription>;

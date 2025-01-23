@@ -58,21 +58,21 @@ class ProductType:
         )
 
 
-# DOCS: https://strawberry.rocks/docs/types/interfaces#interfaces
+# 📜 https://strawberry.rocks/docs/types/interfaces#interfaces
 @strawberry.interface
 class PersonInterface:
     id: strawberry.ID
-    # TODO Add all fields in common
-    # TODO 1: first_name: str
-    # TODO 2: last_name: str
-    # TODO 3: social_club: SocialClubType
+    # 🛠️Add all fields in common
+    # 🛠️first_name: str
+    # 🛠️last_name: str
+    # 🛠️social_club: SocialClubType
 
     @classmethod
     def from_obj(cls, obj: Union["Member", "Guest"]) -> "PersonInterface":
         # Avoid a potential circular dependency; python is optimizing this while runtime
         from core.models import Member, Guest
 
-        # TODO 4: Prepare a kwarg dict with all fields in common
+        # 🛠️Prepare a kwarg dict with all fields in common
         kwargs = dict()
         if isinstance(obj, Member):
             return MemberType(**kwargs, age=obj.age)  # inject the 'difference'
@@ -83,16 +83,16 @@ class PersonInterface:
 
 @strawberry.type
 class MemberType(PersonInterface):
-    pass  # TODO 5: age: int
+    pass  # 🛠️age: int
 
 
 @strawberry.type
 class GuestType(PersonInterface):
-    pass  # TODO 6: rating: int
+    pass  # 🛠️rating: int
 
 
-# DOCS: https://strawberry.rocks/docs/types/interfaces#implementing-interfaces -> Tip
+# 📜https://strawberry.rocks/docs/types/interfaces#implementing-interfaces -> Tip
 # It is always nice to offer all possible interface types
-# TODO 7: Add all possible InterfaceClasses
+# 🛠️Add all possible InterfaceClasses
 possible_types = []
 

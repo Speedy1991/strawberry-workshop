@@ -4,6 +4,9 @@ from typing import AsyncGenerator
 import strawberry
 from strawberry import Info
 
+from core.utils import RedisSingleTone
+from .types import SocialClubType
+
 
 @strawberry.type
 class Subscription:
@@ -16,20 +19,22 @@ class Subscription:
         except asyncio.CancelledError:
             pass
 
-    # TODO 1: Write a subscription and return each second the current time
+    # 🛠️Write a subscription and return each second the current time
 
-    # HINT:
-    # This subscriptions are not really useful. We need something like fanout/pubsub.
-    # Introducing pubsub in this workshop will fill another 2 hours, so I'll give you an idea how it works:
-    # In your subscription you listen to your pubsub, e.g.:
-    # pubsub = redis.pubsub()
-    # channel = pubsub.subscribe(key_you_want_to_listen_to)
-    # while True:
-    #  await asyncio.sleep(1)
-    #  message = channel.get_message()
-    #  if not message:
-    #    continue
-    #  yield DataType(**message)
-    #
-    # Anywhere in your code you can call `redis.publish(key_you_want_to_listen_to, payload)` and all subscribers will receive this payload as message
-    # Care: Redis should be a SingleTon per worker!!
+    # 🛠️Use redis for pubsub and yield the messages
+    # 💡Use some helper methods from the RedisSingleTone
+    # 📜https://redis-py.readthedocs.io/en/stable/advanced_features.html#publish-subscribe
+    @strawberry.subscription
+    async def message(self, info: Info) -> str:
+        pubsub = RedisSingleTone.subscribe('message')
+        await asyncio.sleep(5)
+        message = 'Hello'
+        yield message
+
+    # 🛠️Write a subscription to yield a social club as soon as it is created or changed
+    @strawberry.subscription
+    async def social_club(self, info: Info) -> SocialClubType:
+        pubsub = RedisSingleTone.subscribe('social_club_create_update')
+        raise NotImplementedError
+
+    # ❓What about dataloaders in subscriptions?

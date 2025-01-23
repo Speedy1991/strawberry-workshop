@@ -15,22 +15,22 @@ class Query:
         return [SocialClubType(
             id=sc.id,
             name=sc.name,
-            # street=sc.street,  # TODO 8: uncomment this as soon as you finished your types
-            # zip=sc.zip  # TODO 8: uncomment this as soon as you finished your types
+            # street=sc.street,  # 🛠️uncomment this as soon as you finished your types
+            # zip=sc.zip  # 🛠️uncomment this as soon as you finished your types
         ) for sc in SocialClub.objects.all()]
 
     @strawberry.field
     def products(self, info: Info) -> List[ProductType]:
         return [ProductType(
             id=product.id,
-            # name=product.name,  # TODO 8: uncomment this as soon as you finished your types
-            # price=product.price,  # TODO 8: uncomment this as soon as you finished your types
-            # quality=product.quality  # TODO 8: uncomment this as soon as you finished your types
+            # name=product.name,  # 🛠️uncomment this as soon as you finished your types
+            # price=product.price,  # 🛠️uncomment this as soon as you finished your types
+            # quality=product.quality  # 🛠️uncomment this as soon as you finished your types
         ) for product in Product.objects.all()]
 
-    # DOCS: https://strawberry.rocks/docs/types/scalars#scalars
-    # HINT: you can use datetime or django.utils.timezone
-    # TODO 9: Add a field current_date_time and return the current datetime
+    # 📜https://strawberry.rocks/docs/types/scalars#scalars
+    # 💡you can use datetime or django.utils.timezone
+    # 🛠️Add a field current_date_time and return the current datetime
 
-    # TODO 10: If you have time left: Extend this query with Member
-    # TODO 11: If you have time left: Extend this query with Guest
+    # 🛠️If you have time left: Extend this query with Member
+    # 🛠️If you have time left: Extend this query with Guest

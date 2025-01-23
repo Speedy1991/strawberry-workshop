@@ -13,6 +13,7 @@ export const SocialClub = ({socialClub}: SocialClubProps) => {
         <p>Name: {socialClub.name}</p>
         <p>Street: {socialClub.street}</p>
         <p>Zip: {socialClub.zip}</p>
+        <p>People Count: {socialClub.persons.length}</p>
         <button onClick={() => navigate(`/app/${socialClub.id}/`)}>Details</button>
     </div>
 }

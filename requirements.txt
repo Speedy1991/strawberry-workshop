@@ -8,3 +8,4 @@ websockets==14.1
 pygments
 beautifulsoup4==4.12.3
 requests==2.32.3
+redis==5.2.1

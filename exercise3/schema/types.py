@@ -9,7 +9,7 @@ if TYPE_CHECKING:
     from core.models import SocialClub, Member, Guest, Product
 
 
-# DOCS https://strawberry.rocks/docs/types/private
+# 📜https://strawberry.rocks/docs/types/private
 
 @strawberry.type
 class SocialClubType:
@@ -24,18 +24,18 @@ class SocialClubType:
         return [MemberType.from_obj(member) for member in self.instance.member_set.all()]
 
     # Restore the old behaviour
-    # TODO 1: write a field resolver for name
-    # TODO 2: write a field resolver for street
-    # TODO 3: write a field resolver for zip
-    # TODO 4: write a field resolver for guests
-    # TODO 5: write a field resolver for products
-    # TODO 6: Add an extra field name_uppercase to return the name in full uppercase
+    # 🛠️write a field resolver for name
+    # 🛠️write a field resolver for street
+    # 🛠️write a field resolver for zip
+    # 🛠️write a field resolver for guests
+    # 🛠️write a field resolver for products
+    # 🛠️Add an extra field name_uppercase to return the name in full uppercase
 
-    # DOCS: https://strawberry.rocks/docs/guides/field-extensions#field-extensions
-    # TODO 7: Add an extra field name_uppercase_ext with a FieldExtension to make it uppercase
-    # HINT: You can find a prepared UpperCaseExtension in core.utils
+    # 📜https://strawberry.rocks/docs/guides/field-extensions#field-extensions
+    # 🛠️Add an extra field name_uppercase_ext with a FieldExtension to make it uppercase
+    # 💡You can find a prepared UpperCaseExtension in core.utils
 
-    # QUESTION: Do you know some pro/cons for more boilerplate in types but less logic in queries?
+    # ❓ Do you know some pro/cons for more boilerplate in types but less logic in queries?
 
 
 @strawberry.type
@@ -49,8 +49,8 @@ class ProductType:
     @classmethod
     def from_obj(cls, product: "Product") -> "ProductType":
         pass
-        # TODO 8: return a ProductType
-        # HINT: Care with social club - it must be a type not a model instance
+        # 🛠️return a ProductType
+        # 💡Care with social club - it must be a type not a model instance
 
 
 @strawberry.type
@@ -63,8 +63,8 @@ class MemberType:
 
     @classmethod
     def from_obj(cls, member: "Member") -> "MemberType":
-        pass  # TODO 9: return a MemberType
-        # HINT: Care with social club - it must be a type not a model instance
+        pass  # 🛠️return a MemberType
+        # 💡: Care with social club - it must be a type not a model instance
 
 
 @strawberry.type
@@ -77,6 +77,6 @@ class GuestType:
 
     @classmethod
     def from_obj(cls, guest: "Guest") -> "GuestType":
-        pass  # TODO 10: return a GuestType
-        # HINT: Care with social club - it must be a type not a model instance
-        # HINT: This copy/paste gets annoying - doesn't it? ;)
+        pass  # 🛠️return a GuestType
+        # 💡Care with social club - it must be a type not a model instance
+        # 💡This copy/paste gets annoying - doesn't it? ;)

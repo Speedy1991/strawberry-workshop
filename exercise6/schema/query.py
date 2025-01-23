@@ -24,15 +24,15 @@ class Query:
         qs = SocialClub.objects.all()
         if min_member_count is not None:
             qs = qs.annotate(member_count=Count('member')).filter(member_count__gte=min_member_count)
-        # TODO 3: This won't work - executing a query in an async context will make django cry
-        # HINT: use the `sta` helper from core.utils
-        # QUESTION: Why does line 25 work?
+        # 🛠️This won't work - executing a query in an async context will make django cry
+        # 💡use the `sta` helper from core.utils
+        # ❓Why does line 25 work?
         return [SocialClubType(instance=sc) for sc in qs]
 
     @strawberry.field
     async def products(self, info: Info) -> List[ProductType]:
-        # TODO 3.1: This won't work - executing a query in an async context will make django cry
-        # HINT: use the `sta` helper from core.utils
+        # 🛠️This won't work - executing a query in an async context will make django cry
+        # 💡use the `sta` helper from core.utils
         products = Product.objects.all()
         return await asyncio.gather(*[ProductType.async_from_obj(info, product) for product in products])
 
