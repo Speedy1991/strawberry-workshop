@@ -14,7 +14,7 @@ const App = () => {
 
     if (error) return <div>Error</div>
     return <div>
-        {data?.socialClubs.map(club => <SocialClub key={club.id} socialClub={club} />)}
+        {data?.socialClubs.map(club => <SocialClub key={club.id} socialClub={club} withDetails={false} />)}
     </div>
 }
 

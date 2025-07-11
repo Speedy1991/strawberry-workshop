@@ -1,0 +1,5 @@
+mutation CreateOrUpdateSocialClub($pk: ID, $inp: SocialClubInput!) {
+    createOrUpdateSocialClub(pk: $pk, inp: $inp) {
+        ...SocialClub
+    }
+}

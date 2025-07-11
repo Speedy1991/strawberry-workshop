@@ -15,9 +15,10 @@ export type MemberTypeFieldPolicy = {
     lastName?: FieldPolicy<any> | FieldReadFunction<any>;
     socialClub?: FieldPolicy<any> | FieldReadFunction<any>;
 };
-export type MutationKeySpecifier = ('createOrUpdateProduct' | MutationKeySpecifier)[];
+export type MutationKeySpecifier = ('createOrUpdateProduct' | 'createOrUpdateSocialClub' | MutationKeySpecifier)[];
 export type MutationFieldPolicy = {
     createOrUpdateProduct?: FieldPolicy<any> | FieldReadFunction<any>;
+    createOrUpdateSocialClub?: FieldPolicy<any> | FieldReadFunction<any>;
 };
 export type PersonInterfaceKeySpecifier = ('firstName' | 'id' | 'lastName' | 'socialClub' | PersonInterfaceKeySpecifier)[];
 export type PersonInterfaceFieldPolicy = {

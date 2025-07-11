@@ -8,7 +8,7 @@ const SocialClubDetailsPage = () => {
     const {data, error} = useSocialClubSuspenseQuery({variables: {pk: socialClubId}})
     if(error) throw error
     if(!data?.socialClub) return <div>Not Found</div>
-    return <SocialClub socialClub={data.socialClub} />
+    return <SocialClub socialClub={data.socialClub} withDetails />
 }
 
 export default SocialClubDetailsPage

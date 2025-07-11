@@ -31,6 +31,11 @@ export enum QualityEnum {
     Ok = 'OK',
 }
 
+export type SocialClubInput = {
+    name: Scalars['String']['input'];
+    street: Scalars['String']['input'];
+};
+
 type Person_GuestType_Fragment = { __typename: 'GuestType'; id: string; firstName: string; lastName: string };
 
 type Person_MemberType_Fragment = { __typename: 'MemberType'; id: string; firstName: string; lastName: string };
@@ -47,6 +52,26 @@ export type SocialClubFragment = {
         | { __typename: 'GuestType'; id: string; firstName: string; lastName: string }
         | { __typename: 'MemberType'; id: string; firstName: string; lastName: string }
     >;
+};
+
+export type CreateOrUpdateSocialClubMutationVariables = Exact<{
+    pk?: InputMaybe<Scalars['ID']['input']>;
+    inp: SocialClubInput;
+}>;
+
+export type CreateOrUpdateSocialClubMutation = {
+    __typename: 'Mutation';
+    createOrUpdateSocialClub: {
+        __typename: 'SocialClubType';
+        id: string;
+        name: string;
+        street: string;
+        zip: string;
+        people: Array<
+            | { __typename: 'GuestType'; id: string; firstName: string; lastName: string }
+            | { __typename: 'MemberType'; id: string; firstName: string; lastName: string }
+        >;
+    };
 };
 
 export type SocialClubQueryVariables = Exact<{
@@ -129,6 +154,52 @@ export const SocialClubFragmentDoc = gql`
     }
     ${PersonFragmentDoc}
 `;
+export const CreateOrUpdateSocialClubDocument = gql`
+    mutation CreateOrUpdateSocialClub($pk: ID, $inp: SocialClubInput!) {
+        createOrUpdateSocialClub(pk: $pk, inp: $inp) {
+            ...SocialClub
+        }
+    }
+    ${SocialClubFragmentDoc}
+`;
+export type CreateOrUpdateSocialClubMutationFn = Apollo.MutationFunction<
+    CreateOrUpdateSocialClubMutation,
+    CreateOrUpdateSocialClubMutationVariables
+>;
+
+/**
+ * __useCreateOrUpdateSocialClubMutation__
+ *
+ * To run a mutation, you first call `useCreateOrUpdateSocialClubMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateOrUpdateSocialClubMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createOrUpdateSocialClubMutation, { data, loading, error }] = useCreateOrUpdateSocialClubMutation({
+ *   variables: {
+ *      pk: // value for 'pk'
+ *      inp: // value for 'inp'
+ *   },
+ * });
+ */
+export function useCreateOrUpdateSocialClubMutation(
+    baseOptions?: Apollo.MutationHookOptions<CreateOrUpdateSocialClubMutation, CreateOrUpdateSocialClubMutationVariables>
+) {
+    const options = { ...defaultOptions, ...baseOptions };
+    return Apollo.useMutation<CreateOrUpdateSocialClubMutation, CreateOrUpdateSocialClubMutationVariables>(
+        CreateOrUpdateSocialClubDocument,
+        options
+    );
+}
+export type CreateOrUpdateSocialClubMutationHookResult = ReturnType<typeof useCreateOrUpdateSocialClubMutation>;
+export type CreateOrUpdateSocialClubMutationResult = Apollo.MutationResult<CreateOrUpdateSocialClubMutation>;
+export type CreateOrUpdateSocialClubMutationOptions = Apollo.BaseMutationOptions<
+    CreateOrUpdateSocialClubMutation,
+    CreateOrUpdateSocialClubMutationVariables
+>;
 export const SocialClubDocument = gql`
     query SocialClub($pk: ID!) {
         socialClub(pk: $pk) {
