@@ -32,7 +32,7 @@ class SocialClubType:
         return self.instance.zip
 
     @strawberry.field
-    async def persons(self, info: Info) -> List["PersonInterface"]:
+    async def people(self, info: Info) -> List["PersonInterface"]:
         # 🛠️Can you write a dataloader for members and guests?
         members = await sta(self.instance.member_set.all())
         guests = await sta(self.instance.guest_set.all())

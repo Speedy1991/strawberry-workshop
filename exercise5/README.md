@@ -20,7 +20,7 @@ query SocialClub {
   socialClub(pk: 5) {
     id
     name
-    persons {
+    people {
       id
       __typename
       firstName

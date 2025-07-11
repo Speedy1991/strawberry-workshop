@@ -30,7 +30,7 @@ class SocialClubType:
         return self.instance.zip
 
     @strawberry.field
-    def persons(self, info: Info) -> List["PersonInterface"]:
+    def people(self, info: Info) -> List["PersonInterface"]:
         members_and_guests = [*self.instance.member_set.all(), *self.instance.guest_set.all()]
         return [PersonInterface.from_obj(mag) for mag in members_and_guests]
 

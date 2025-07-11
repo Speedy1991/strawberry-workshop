@@ -9,7 +9,7 @@ fragment SocialClub on SocialClubType {
     name
     street
     zip
-    persons {
+    people {
         ...Person
     }
 }

@@ -41,11 +41,11 @@ export type QueryFieldPolicy = {
     socialClub?: FieldPolicy<any> | FieldReadFunction<any>;
     socialClubs?: FieldPolicy<any> | FieldReadFunction<any>;
 };
-export type SocialClubTypeKeySpecifier = ('id' | 'name' | 'persons' | 'products' | 'street' | 'zip' | SocialClubTypeKeySpecifier)[];
+export type SocialClubTypeKeySpecifier = ('id' | 'name' | 'people' | 'products' | 'street' | 'zip' | SocialClubTypeKeySpecifier)[];
 export type SocialClubTypeFieldPolicy = {
     id?: FieldPolicy<any> | FieldReadFunction<any>;
     name?: FieldPolicy<any> | FieldReadFunction<any>;
-    persons?: FieldPolicy<any> | FieldReadFunction<any>;
+    people?: FieldPolicy<any> | FieldReadFunction<any>;
     products?: FieldPolicy<any> | FieldReadFunction<any>;
     street?: FieldPolicy<any> | FieldReadFunction<any>;
     zip?: FieldPolicy<any> | FieldReadFunction<any>;

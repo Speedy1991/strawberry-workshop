@@ -43,7 +43,7 @@ export type SocialClubFragment = {
     name: string;
     street: string;
     zip: string;
-    persons: Array<
+    people: Array<
         | { __typename: 'GuestType'; id: string; firstName: string; lastName: string }
         | { __typename: 'MemberType'; id: string; firstName: string; lastName: string }
     >;
@@ -61,7 +61,7 @@ export type SocialClubQuery = {
         name: string;
         street: string;
         zip: string;
-        persons: Array<
+        people: Array<
             | { __typename: 'GuestType'; id: string; firstName: string; lastName: string }
             | { __typename: 'MemberType'; id: string; firstName: string; lastName: string }
         >;
@@ -78,7 +78,7 @@ export type SocialClubsQuery = {
         name: string;
         street: string;
         zip: string;
-        persons: Array<
+        people: Array<
             | { __typename: 'GuestType'; id: string; firstName: string; lastName: string }
             | { __typename: 'MemberType'; id: string; firstName: string; lastName: string }
         >;
@@ -103,7 +103,7 @@ export type SocialClubChangesSubscription = {
         name: string;
         street: string;
         zip: string;
-        persons: Array<
+        people: Array<
             | { __typename: 'GuestType'; id: string; firstName: string; lastName: string }
             | { __typename: 'MemberType'; id: string; firstName: string; lastName: string }
         >;
@@ -123,7 +123,7 @@ export const SocialClubFragmentDoc = gql`
         name
         street
         zip
-        persons {
+        people {
             ...Person
         }
     }
