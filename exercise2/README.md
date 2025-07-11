@@ -12,12 +12,12 @@ At the moment we can't query anything related (e.g. _members_, _guests_, _produc
 
 ## Questions
 ```
-@strawberry.field
-random_names(self, info: Info) -> <???>:
+@strawberry.field()
+random_names(self, info: MyInfo) -> <???>:
     return None if True else ["Peter", "Paul", "Amy"]
 
-@strawberry.field    
-number(self, info: Info) -> <???>:
+@strawberry.field()    
+number(self, info: MyInfo) -> <???>:
     return None if True else 1
 ```
 Find the matching return Type

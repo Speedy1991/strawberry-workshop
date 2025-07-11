@@ -1,9 +1,9 @@
 from typing import List, TYPE_CHECKING, Union
 
 import strawberry
-from strawberry import Info
 
 from core.schema.enums import QualityEnum
+from core.type_helpers import MyInfo
 
 if TYPE_CHECKING:
     from core.models import SocialClub, Member, Guest, Product
@@ -13,30 +13,35 @@ if TYPE_CHECKING:
 class SocialClubType:
     instance: strawberry.Private["SocialClub"]
 
-    @strawberry.field
-    def id(self, info: Info) -> strawberry.ID:
+    @strawberry.field()
+    def id(self, info: MyInfo) -> strawberry.ID:
         return self.instance.id
 
-    @strawberry.field
-    def name(self, info: Info) -> str:
+    @strawberry.field()
+    def name(self, info: MyInfo) -> str:
         return self.instance.name
 
-    @strawberry.field
-    def street(self, info: Info) -> str:
+    @strawberry.field()
+    def street(self, info: MyInfo) -> str:
         return self.instance.street
 
-    @strawberry.field
-    def zip(self, info: Info) -> str:
+    @strawberry.field()
+    def zip(self, info: MyInfo) -> str:
         return self.instance.zip
 
-    @strawberry.field
-    def people(self, info: Info) -> List["PersonInterface"]:
-        members_and_guests = [*self.instance.member_set.all(), *self.instance.guest_set.all()]
+    @strawberry.field()
+    def people(self, info: MyInfo) -> List["PersonInterface"]:
+        members_and_guests = [
+            *self.instance.member_set.all(),
+            *self.instance.guest_set.all(),
+        ]
         return [PersonInterface.from_obj(mag) for mag in members_and_guests]
 
-    @strawberry.field
-    def products(self, info: Info) -> List["ProductType"]:
-        return [ProductType.from_obj(product) for product in self.instance.product_set.all()]
+    @strawberry.field()
+    def products(self, info: MyInfo) -> List["ProductType"]:
+        return [
+            ProductType.from_obj(product) for product in self.instance.product_set.all()
+        ]
 
 
 @strawberry.type
@@ -54,7 +59,7 @@ class ProductType:
             name=product.name,
             price=product.price,
             quality=product.quality,
-            social_club=SocialClubType(instance=product.social_club)
+            social_club=SocialClubType(instance=product.social_club),
         )
 
 
@@ -95,4 +100,3 @@ class GuestType(PersonInterface):
 # It is always nice to offer all possible interface types
 # 🛠️Add all possible InterfaceClasses
 possible_types = []
-

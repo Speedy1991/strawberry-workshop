@@ -23,10 +23,17 @@ def asdict_factory(data):
     return dict((k, convert_value(v)) for k, v in data)
 
 
+def sid(identifier: str | int) -> strawberry.ID:
+    return strawberry.ID(identifier)
+
+
 class UpperCaseExtension(FieldExtension):
-    def resolve(self, next_: Callable[..., Any], source: Any, info: strawberry.Info, **kwargs):
+    def resolve(
+        self, next_: Callable[..., Any], source: Any, info: strawberry.Info, **kwargs
+    ):
         result = next_(source, info, **kwargs)
         return str(result).upper()
+
 
 async def sta(qs):
     return await sync_to_async(lambda: list(qs))()
@@ -40,7 +47,13 @@ class RedisSingleTone:
         if RedisSingleTone.__instance is None:
             RedisSingleTone.__instance = object.__new__(cls)
             RedisSingleTone.__instance.redis = redis_lib.Redis(
-                host=settings.REDIS_HOST, port=settings.REDIS_PORT, db=0, socket_connect_timeout=2, socket_timeout=2, max_connections=1000, socket_keepalive=True
+                host=settings.REDIS_HOST,
+                port=settings.REDIS_PORT,
+                db=0,
+                socket_connect_timeout=2,
+                socket_timeout=2,
+                max_connections=1000,
+                socket_keepalive=True,
             )
         return RedisSingleTone.__instance
 
@@ -60,7 +73,7 @@ class RedisSingleTone:
     def get_data(cls, message: dict):
         if not message:
             return None
-        message = message['data'].decode('utf-8')
+        message = message["data"].decode("utf-8")
         try:
             return json.loads(message)
         except json.decoder.JSONDecodeError:

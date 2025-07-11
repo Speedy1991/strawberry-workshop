@@ -1,5 +1,5 @@
-django==5.1.5
-strawberry-graphql==0.258.0
+django==5.2.4
+strawberry-graphql==0.275.5
 starlette==0.40.0
 gunicorn
 uvicorn
@@ -9,3 +9,4 @@ pygments
 beautifulsoup4==4.12.3
 requests==2.32.3
 redis==5.2.1
+ruff

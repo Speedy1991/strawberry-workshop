@@ -3,6 +3,7 @@ import strawberry
 
 # 📜 https://strawberry.rocks/docs/types/scalars
 
+
 @strawberry.type
 class SocialClubType:
     id: strawberry.ID

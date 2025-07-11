@@ -8,6 +8,7 @@ from django.http import HttpRequest
 from django.template.defaultfilters import safe
 from django.contrib.staticfiles import finders
 
+
 @dataclass(frozen=True)
 class Assets:
     body: str
@@ -20,7 +21,6 @@ class AppLoader:
     port: int
     bundle: str
 
-
     def get_static_server_assets(self) -> Assets:
         asset_file_path = finders.find(self.static_path)
         if not asset_file_path or not os.path.isfile(asset_file_path):
@@ -29,37 +29,43 @@ class AppLoader:
                 f"'{self.static_path}' in the static files storage."
             )
 
-        with open(asset_file_path, encoding='UTF-8') as asset_file:
-            parsed_html = BeautifulSoup(asset_file.read(), features='lxml')
-            head_section = parsed_html.head.decode_contents() if parsed_html.head else ""
-            body_section = parsed_html.body.decode_contents() if parsed_html.body else ""
+        with open(asset_file_path, encoding="UTF-8") as asset_file:
+            parsed_html = BeautifulSoup(asset_file.read(), features="lxml")
+            head_section = (
+                parsed_html.head.decode_contents() if parsed_html.head else ""
+            )
+            body_section = (
+                parsed_html.body.decode_contents() if parsed_html.body else ""
+            )
 
-        return Assets(
-            body=safe(body_section),
-            head=safe(head_section)
-        )
+        return Assets(body=safe(body_section), head=safe(head_section))
 
     def vite_dev_server_running(self):
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             s.settimeout(1)  # Set a timeout for the connection attempt
-            result = s.connect_ex(('127.0.0.1', self.port))
+            result = s.connect_ex(("127.0.0.1", self.port))
             return result == 0  # 0 means the port is open
 
-    def get_dev_server_assets_with_replacements(self, request: HttpRequest) -> Assets | None:
-        local_server_url = f'http://127.0.0.1:{self.port}'
-        external_server_url = f'http://{request.get_host().split(":")[0]}:{self.port}/'
+    def get_dev_server_assets_with_replacements(
+        self, request: HttpRequest
+    ) -> Assets | None:
+        local_server_url = f"http://127.0.0.1:{self.port}"
+        external_server_url = f"http://{request.get_host().split(':')[0]}:{self.port}/"
 
         if not self.vite_dev_server_running():
             return None
 
         try:
             response = requests.get(local_server_url, timeout=1)
-            if response.status_code != 200 or response.headers.get('Vite-Bundle') != self.bundle:
+            if (
+                response.status_code != 200
+                or response.headers.get("Vite-Bundle") != self.bundle
+            ):
                 return None
         except requests.exceptions.RequestException:
             return None
 
-        parsed_html = BeautifulSoup(response.content, features='lxml')
+        parsed_html = BeautifulSoup(response.content, features="lxml")
         head_section = str(parsed_html.head.decode_contents())
         body_section = str(parsed_html.body.decode_contents())
 
@@ -69,17 +75,14 @@ class AppLoader:
             'import { inject } from "/': f'import {{ inject }} from "{external_server_url}',
             'base: "/",': f'base: "{external_server_url}",',
             'base: "http://127.0.0.1:8000/",': f'base: "{external_server_url}",',
-            '"/@react-refresh"': f'"{external_server_url}@react-refresh"'
+            '"/@react-refresh"': f'"{external_server_url}@react-refresh"',
         }
 
         for original, updated in url_patterns_to_replace.items():
             head_section = head_section.replace(original, updated)
             body_section = body_section.replace(original, updated)
 
-        return Assets(
-            body=safe(body_section),
-            head=safe(head_section)
-        )
+        return Assets(body=safe(body_section), head=safe(head_section))
 
     def assets(self, request: HttpRequest) -> Assets:
         # if dev server is running, return the dev server stuff

@@ -12,12 +12,12 @@ Fix the [settings.py](https://github.com/Speedy1991/strawberry-workshop/blob/mai
 ## Questions
 
 ```
-@strawberry.field
-random_names(self, info: Info) -> <???>:
+@strawberry.field()
+random_names(self, info: MyInfo) -> <???>:
     return ["Peter", "Paul", "Amy"]
 
-@strawberry.field    
-number(self, info: Info) -> <???>:
+@strawberry.field()    
+number(self, info: MyInfo) -> <???>:
     return 5
 ```
 

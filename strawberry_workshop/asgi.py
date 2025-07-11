@@ -17,12 +17,14 @@ from starlette.responses import PlainTextResponse
 from starlette.websockets import WebSocket
 
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'strawberry_workshop.settings')
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "strawberry_workshop.settings")
+
 
 def get_application():
     django.setup()
     # 💡: Yea we serve ASGIStaticFiles, in a prod environment a reverse proxy should be used leading to /static will never hit the django server in prod
     return ASGIStaticFilesHandler(ASGIHandler())
+
 
 # 💡: This is very raw code for max performance and highest adaptability
 # 💡: This will also work with a starlette Router and use Django as a middleware application
@@ -37,18 +39,23 @@ def router(app):
             match = resolve(scope["raw_path"].decode("ascii"))
             # Care you are responsible to create the request stuff and security yourself. The django middlewarestack IS NOT APPLIED!!!
             # https://strawberry.rocks/docs/integrations/starlette
-            await match.func(WebSocket(scope, receive, send), *match.args, **match.kwargs)
+            await match.func(
+                WebSocket(scope, receive, send), *match.args, **match.kwargs
+            )
             return
 
-        raw_path = scope.get('path', None)
+        raw_path = scope.get("path", None)
         if scope["type"] == "http":
-            if raw_path == '/test/':
-                await PlainTextResponse('Hello from test - no django code is executed')(scope, receive, send)
+            if raw_path == "/test/":
+                await PlainTextResponse("Hello from test - no django code is executed")(
+                    scope, receive, send
+                )
                 return
         try:
             await app(scope, receive, send)
         except Exception as e:
             raise e
+
     return asgi
 
 

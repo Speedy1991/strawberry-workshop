@@ -1,9 +1,9 @@
 from typing import List, TYPE_CHECKING
 
 import strawberry
-from strawberry import Info
 
 from core.schema.enums import QualityEnum
+from core.type_helpers import MyInfo
 
 if TYPE_CHECKING:
     from core.models import SocialClub, Member, Guest, Product
@@ -11,23 +11,38 @@ if TYPE_CHECKING:
 
 # 📜https://strawberry.rocks/docs/types/private
 
+
 @strawberry.type
 class SocialClubType:
     instance: strawberry.Private["SocialClub"]
 
-    @strawberry.field
-    def id(self, info: Info) -> strawberry.ID:
+    @strawberry.field()
+    def id(self, info: MyInfo) -> strawberry.ID:
         return self.instance.id
 
-    @strawberry.field
-    def members(self, info: Info) -> List["MemberType"]:
-        return [MemberType.from_obj(member) for member in self.instance.member_set.all()]
+    @strawberry.field()
+    def members(self, info: MyInfo) -> List["MemberType"]:
+        return [
+            MemberType.from_obj(member) for member in self.instance.member_set.all()
+        ]
+
+    @strawberry.field()
+    def name(self, info: MyInfo) -> str:
+        return self.instance.name
+
+    @strawberry.field()
+    def street(self, info: MyInfo) -> str:
+        return self.instance.street
+
+    @strawberry.field()
+    def zip(self, info: MyInfo) -> str:
+        return self.instance.zip
+
+    @strawberry.field()
+    def guests(self, info: MyInfo) -> List["GuestType"]:
+        return [GuestType.from_obj(guest) for guest in self.instance.guest_set.all()]
 
     # Restore the old behaviour
-    # 🛠️write a field resolver for name
-    # 🛠️write a field resolver for street
-    # 🛠️write a field resolver for zip
-    # 🛠️write a field resolver for guests
     # 🛠️write a field resolver for products
     # 🛠️Add an extra field name_uppercase to return the name in full uppercase
 

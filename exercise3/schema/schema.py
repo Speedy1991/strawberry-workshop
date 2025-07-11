@@ -1,5 +1,11 @@
 import strawberry
-from strawberry.extensions import QueryDepthLimiter, MaxAliasesLimiter, ParserCache, ValidationCache, MaskErrors
+from strawberry.extensions import (
+    QueryDepthLimiter,
+    MaxAliasesLimiter,
+    ParserCache,
+    ValidationCache,
+    MaskErrors,
+)
 
 from .query import Query
 
@@ -10,6 +16,6 @@ schema = strawberry.Schema(
         MaxAliasesLimiter(max_alias_count=15),
         ParserCache(),
         ValidationCache(),
-        MaskErrors()
-    ]
+        MaskErrors(),
+    ],
 )

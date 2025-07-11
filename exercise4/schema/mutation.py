@@ -2,9 +2,9 @@ from typing import Optional
 
 import strawberry
 from django.db import transaction
-from strawberry import Info
 
 from core.models import Product
+from core.type_helpers import MyInfo
 from .types import ProductType
 
 
@@ -17,15 +17,15 @@ class ProductInput:
     # 🛠️price
     # 🛠️quality
 
+
 # ❓Lookup the UNSET type on the strawberry docs. What could it be useful for? What is the difference between None and UNSET?
 
 
 @strawberry.type
 class Mutation:
-
     @strawberry.mutation
     @transaction.atomic
-    def create_or_update_product(self, info: Info, inp: ProductInput) -> ProductType:
+    def create_or_update_product(self, info: MyInfo, inp: ProductInput) -> ProductType:
         if inp.pk:
             product = Product.objects.get(id=inp.pk)
         else:
@@ -40,4 +40,3 @@ class Mutation:
         product.save()
 
         return ProductType.from_obj(product)
-

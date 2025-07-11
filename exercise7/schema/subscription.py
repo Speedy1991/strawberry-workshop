@@ -2,8 +2,8 @@ import asyncio
 from typing import AsyncGenerator
 
 import strawberry
-from strawberry import Info
 
+from core.type_helpers import MyInfo
 from core.utils import RedisSingleTone
 from .types import SocialClubType
 
@@ -11,7 +11,7 @@ from .types import SocialClubType
 @strawberry.type
 class Subscription:
     @strawberry.subscription
-    async def count(self, info: Info, target: int = 100) -> AsyncGenerator[int, None]:
+    async def count(self, info: MyInfo, target: int = 100) -> AsyncGenerator[int, None]:
         try:
             for i in range(target):
                 yield i
@@ -25,16 +25,16 @@ class Subscription:
     # 💡Use some helper methods from the RedisSingleTone
     # 📜https://redis-py.readthedocs.io/en/stable/advanced_features.html#publish-subscribe
     @strawberry.subscription
-    async def message(self, info: Info) -> str:
-        pubsub = RedisSingleTone.subscribe('message')
+    async def message(self, info: MyInfo) -> str:
+        pubsub = RedisSingleTone.subscribe("message")  # noqa
         await asyncio.sleep(5)
-        message = 'Hello'
+        message = "Hello"
         yield message
 
     # 🛠️Write a subscription to yield a social club as soon as it is created or changed
     @strawberry.subscription
-    async def social_club(self, info: Info) -> SocialClubType:
-        pubsub = RedisSingleTone.subscribe('social_club_create_update')
+    async def social_club(self, info: MyInfo) -> SocialClubType:
+        pubsub = RedisSingleTone.subscribe("social_club_create_update")  # noqa
         raise NotImplementedError
 
     # ❓What about dataloaders in subscriptions?

@@ -3,7 +3,6 @@ import strawberry
 
 @strawberry.type
 class Query:
-
-    @strawberry.field
+    @strawberry.field()
     def hello(self) -> str:
-        return 'Hello'
+        return "Hello"

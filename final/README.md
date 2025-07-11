@@ -8,7 +8,7 @@ We finished this workshop :)
 
 Whats left?
 
-- What is this `info: Info` thing?
+- What is this `info: MyInfo` thing?
 - Let's have a look at the customized asgi handler if time is left :)
 
 ## Why starlette?

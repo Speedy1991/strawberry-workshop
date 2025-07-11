@@ -5,6 +5,7 @@ from core.schema.enums import QualityEnum
 
 # 📜 https://strawberry.rocks/docs/general/schema-basics#object-types
 
+
 @strawberry.type
 class SocialClubType:
     id: strawberry.ID

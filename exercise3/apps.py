@@ -2,5 +2,5 @@ from django.apps import AppConfig
 
 
 class Exercise3Config(AppConfig):
-    default_auto_field = 'django.db.models.BigAutoField'
-    name = 'exercise3'
+    default_auto_field = "django.db.models.BigAutoField"
+    name = "exercise3"

@@ -5,58 +5,111 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='SocialClub',
+            name="SocialClub",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=100)),
-                ('street', models.CharField(max_length=100)),
-                ('zip', models.CharField(max_length=100)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=100)),
+                ("street", models.CharField(max_length=100)),
+                ("zip", models.CharField(max_length=100)),
             ],
         ),
         migrations.CreateModel(
-            name='Product',
+            name="Product",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=100)),
-                ('price', models.PositiveSmallIntegerField()),
-                ('quality', models.PositiveSmallIntegerField(choices=[(1, 'Bad'), (2, 'OK'), (3, 'Good')], default=3)),
-                ('social_club', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='core.socialclub')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=100)),
+                ("price", models.PositiveSmallIntegerField()),
+                (
+                    "quality",
+                    models.PositiveSmallIntegerField(
+                        choices=[(1, "Bad"), (2, "OK"), (3, "Good")], default=3
+                    ),
+                ),
+                (
+                    "social_club",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="core.socialclub",
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Member',
+            name="Member",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('first_name', models.CharField(max_length=100)),
-                ('last_name', models.CharField(max_length=100)),
-                ('age', models.PositiveSmallIntegerField(default=0)),
-                ('social_club', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='core.socialclub')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("first_name", models.CharField(max_length=100)),
+                ("last_name", models.CharField(max_length=100)),
+                ("age", models.PositiveSmallIntegerField(default=0)),
+                (
+                    "social_club",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="core.socialclub",
+                    ),
+                ),
             ],
             options={
-                'abstract': False,
-                'unique_together': {('first_name', 'last_name')},
+                "abstract": False,
+                "unique_together": {("first_name", "last_name")},
             },
         ),
         migrations.CreateModel(
-            name='Guest',
+            name="Guest",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('first_name', models.CharField(max_length=100)),
-                ('last_name', models.CharField(max_length=100)),
-                ('rating', models.PositiveSmallIntegerField(default=0)),
-                ('social_club', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='core.socialclub')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("first_name", models.CharField(max_length=100)),
+                ("last_name", models.CharField(max_length=100)),
+                ("rating", models.PositiveSmallIntegerField(default=0)),
+                (
+                    "social_club",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="core.socialclub",
+                    ),
+                ),
             ],
             options={
-                'abstract': False,
-                'unique_together': {('first_name', 'last_name')},
+                "abstract": False,
+                "unique_together": {("first_name", "last_name")},
             },
         ),
     ]

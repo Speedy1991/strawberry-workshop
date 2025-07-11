@@ -3,10 +3,10 @@ from typing import Optional
 import strawberry
 from django.db import transaction
 from dataclasses import asdict
-from strawberry import Info
 
 from core.models import Product
 from core.schema.enums import QualityEnum
+from core.type_helpers import MyInfo
 from core.utils import asdict_factory
 from final.schema.types import ProductType
 
@@ -21,10 +21,11 @@ class ProductInput:
 
 @strawberry.type
 class Mutation:
-
     @strawberry.mutation
     @transaction.atomic
-    async def create_or_update_product(self, info: Info, inp: ProductInput, pk: Optional[strawberry.ID] = None) -> ProductType:
+    async def create_or_update_product(
+        self, info: MyInfo, inp: ProductInput, pk: Optional[strawberry.ID] = None
+    ) -> ProductType:
         if pk:
             product = await Product.objects.aget(id=pk)
         else:
