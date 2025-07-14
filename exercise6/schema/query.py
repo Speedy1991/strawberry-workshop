@@ -37,6 +37,7 @@ class Query:
         # 🛠️This won't work - executing a query in an async context will make django cry
         # 💡use the `sta` helper from core.utils
         products = Product.objects.all()
+        # ❓Gather? Or just return a List comprehension?
         return await asyncio.gather(
             *[ProductType.async_from_obj(info, product) for product in products]
         )

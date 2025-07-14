@@ -14,43 +14,6 @@ Fix the [settings.py](https://github.com/Speedy1991/strawberry-workshop/blob/mai
 
 3) Extra if you are really quick: Is it possible to mock/fake some Product data? Can you also mock/fake SocialClub data?
 
-Example:
-```
-query SocialClubMembersStartingWithA {
-  socialClubs {
-    id
-    name
-    members(startsWith: "a") {
-      id
-      firstName
-      lastName
-    }
-  }
-}
-
-query SocialClubWithAtLeast5Members {
-  socialClubs(minMemberCount: 5) {
-    name
-    id
-  }
-}
-
-mutation CreateProduct {
-  createOrUpdateProduct(
-    inp: {pk: 1, name: "Product 1", socialClubId: 5, price: 50, quality: GOOD}
-  ) {
-    id
-    name
-    price
-    quality
-    socialClub {
-      id
-      name
-    }
-  }
-}
-```
-
 
 ## TODO
 

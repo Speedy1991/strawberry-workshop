@@ -10,7 +10,7 @@ from core.views.graphql_ws import websocket_view
 
 module = importlib.import_module(f"{settings.CURRENT_EXERCISE}.schema.schema")
 
-view_mapper = {f"exercise{no}": PatchedGraphQLView for no in range(1, 7)}
+view_mapper = {f"exercise{no}": PatchedGraphQLView for no in range(1, 6)}
 GraphQLView = view_mapper.get(settings.CURRENT_EXERCISE, AsyncPatchedGraphQLView)
 schema = getattr(module, "schema")
 

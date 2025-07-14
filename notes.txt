@@ -1,0 +1,40 @@
+Intro
+AI autocompletion
+Rough introduction how Schema/graphql works
+Dataclasses
+Show Schema/query/Mutation/subscriptions
+
+Exercise1 Notes:
+Open GraphiQL and Show current Status
+Give a single example how to Change the Schema
+Check the Questions
+
+Exercise2 Notes:
+Django specific stuff
+
+Exercise3 Notes:
+Refactor
+explain private fields
+
+Exercise4 Notes:
+explain mutations and difference between mutations/queries
+Show a Mutation example
+
+Exercise5 Notes:
+explain interfaces
+explain possible types
+Show Schema in graphiql
+
+Exercise6 Notes:
+why async? Some reallive examples?
+explain dataloaders and the N+1 Problem
+The DataLoader waits for all the immediate resolver executions in the current event loop to complete.
+1+1 query
+
+Exercise7 Notes:
+Explain subscriptions
+Endless looping
+
+
+ExerciseX:
+Explain Frontend, codegen, typescript

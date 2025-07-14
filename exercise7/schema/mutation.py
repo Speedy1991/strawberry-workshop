@@ -21,7 +21,7 @@ class ProductInput:
 
 @strawberry.type
 class Mutation:
-    @strawberry.mutation
+    @strawberry.mutation()
     @transaction.atomic
     async def create_or_update_product(
         self, info: MyInfo, inp: ProductInput, pk: Optional[strawberry.ID] = None

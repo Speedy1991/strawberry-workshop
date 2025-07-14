@@ -10,11 +10,9 @@ if TYPE_CHECKING:
     from core.models import SocialClub, Member, Guest, Product
 
 
-# 📜https://strawberry.rocks/docs/types/private
-
-
 @strawberry.type
 class SocialClubType:
+    # 📜https://strawberry.rocks/docs/types/private
     instance: strawberry.Private["SocialClub"]
 
     @strawberry.field()
@@ -35,6 +33,8 @@ class SocialClubType:
 
     # 🛠️Add arguments to the field
     # 📜https://strawberry.rocks/docs/general/queries#arguments
+    # 🛠 Documentation for "complex" api methods are nice - check out how to add descriptions
+    # 📜https://strawberry.rocks/docs/types/resolvers#annotated-arguments
     @strawberry.field()
     def members(self, info: MyInfo) -> List["MemberType"]:
         starts_with = None  # 🛠️remove this line

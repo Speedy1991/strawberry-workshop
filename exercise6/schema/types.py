@@ -72,7 +72,7 @@ class ProductType:
         )
 
 
-@strawberry.interface
+@strawberry.interface()
 class PersonInterface:
     id: strawberry.ID
     first_name: str
