@@ -4,16 +4,15 @@ import strawberry
 
 from core.schema.enums import QualityEnum
 from core.type_helpers import MyInfo
+from core.utils import sid
 
 if TYPE_CHECKING:
     from core.models import SocialClub, Member, Guest, Product
 
 
-# 📜https://strawberry.rocks/docs/types/private
-
-
 @strawberry.type
 class SocialClubType:
+    # 📜https://strawberry.rocks/docs/types/private
     instance: strawberry.Private["SocialClub"]
 
     @strawberry.field()
@@ -44,13 +43,12 @@ class SocialClubType:
 
     # Restore the old behaviour
     # 🛠️write a field resolver for products
-    # 🛠️Add an extra field name_uppercase to return the name in full uppercase
-
-    # 📜https://strawberry.rocks/docs/guides/field-extensions#field-extensions
-    # 🛠️Add an extra field name_uppercase_ext with a FieldExtension to make it uppercase
-    # 💡You can find a prepared UpperCaseExtension in core.utils
 
     # ❓ Do you know some pro/cons for more boilerplate in types but less logic in queries?
+
+    # Check out FieldExtensions - this is not used in this tutorial, but a very interesting pattern to move logic to the resolver level
+    # ❓ Any ideas what this could be useful for?
+    # 📜https://strawberry.rocks/docs/guides/field-extensions#field-extensions
 
 
 @strawberry.type
@@ -63,9 +61,13 @@ class ProductType:
 
     @classmethod
     def from_obj(cls, product: "Product") -> "ProductType":
-        pass
-        # 🛠️return a ProductType
-        # 💡Care with social club - it must be a type not a model instance
+        return ProductType(
+            id=sid(product.id),
+            name=product.name,
+            price=product.price,
+            quality=QualityEnum(product.quality),
+            social_club=SocialClubType(instance=product.social_club),
+        )
 
 
 @strawberry.type

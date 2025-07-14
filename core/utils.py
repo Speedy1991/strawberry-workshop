@@ -1,13 +1,11 @@
 import datetime
 import json
 from enum import Enum
-from typing import Callable, Any
 
 import strawberry
 from asgiref.sync import sync_to_async
 from django.conf import settings
 from redis.typing import EncodableT, ChannelT
-from strawberry.extensions import FieldExtension
 import redis as redis_lib
 
 
@@ -25,14 +23,6 @@ def asdict_factory(data):
 
 def sid(identifier: str | int) -> strawberry.ID:
     return strawberry.ID(identifier)
-
-
-class UpperCaseExtension(FieldExtension):
-    def resolve(
-        self, next_: Callable[..., Any], source: Any, info: strawberry.Info, **kwargs
-    ):
-        result = next_(source, info, **kwargs)
-        return str(result).upper()
 
 
 async def sta(qs):

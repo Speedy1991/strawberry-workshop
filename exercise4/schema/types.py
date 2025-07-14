@@ -4,7 +4,7 @@ import strawberry
 
 from core.schema.enums import QualityEnum
 from core.type_helpers import MyInfo
-from core.utils import UpperCaseExtension, sid
+from core.utils import sid
 
 if TYPE_CHECKING:
     from core.models import SocialClub, Member, Guest, Product
@@ -57,10 +57,6 @@ class SocialClubType:
     @strawberry.field()
     def name_uppercase(self, info: MyInfo) -> str:
         return self.instance.name.upper()
-
-    @strawberry.field(extensions=[UpperCaseExtension()])
-    def name_uppercase_ext(self, info: MyInfo) -> str:
-        return self.instance.name
 
 
 @strawberry.type
