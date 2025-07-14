@@ -3,6 +3,7 @@ AI autocompletion
 Rough introduction how Schema/graphql works
 Dataclasses
 Show Schema/query/Mutation/subscriptions
+Error logging fully integrated with sentry/traces
 
 Exercise1 Notes:
 Open GraphiQL and Show current Status
@@ -34,7 +35,6 @@ The DataLoader waits for all the immediate resolver executions in the current ev
 Exercise7 Notes:
 Explain subscriptions
 Endless looping
-
 
 ExerciseX:
 Explain Frontend, codegen, typescript
