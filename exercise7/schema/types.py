@@ -5,7 +5,7 @@ import strawberry
 
 from core.schema.enums import QualityEnum
 from core.type_helpers import MyInfo
-from core.utils import sta
+from core.utils import sta, sid
 
 if TYPE_CHECKING:
     from core.models import SocialClub, Member, Guest, Product
@@ -59,7 +59,7 @@ class ProductType:
     @classmethod
     async def async_from_obj(cls, info: MyInfo, product: "Product") -> "ProductType":
         return ProductType(
-            id=product.id,
+            id=sid(product.id),
             name=product.name,
             price=product.price,
             quality=product.quality,

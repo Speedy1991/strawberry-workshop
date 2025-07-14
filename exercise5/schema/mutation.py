@@ -31,6 +31,7 @@ class Mutation:
         else:
             product = Product()
         # This is a nice trick if your input type is a subset of your model
+        # This is a bad trick, because you won't get type hints
         for k, v in asdict(inp, dict_factory=asdict_factory).items():
             setattr(product, k, v)
         product.save()

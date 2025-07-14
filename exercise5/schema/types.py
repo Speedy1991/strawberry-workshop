@@ -4,6 +4,7 @@ import strawberry
 
 from core.schema.enums import QualityEnum
 from core.type_helpers import MyInfo
+from core.utils import sid
 
 if TYPE_CHECKING:
     from core.models import SocialClub, Member, Guest, Product
@@ -55,7 +56,7 @@ class ProductType:
     @classmethod
     def from_obj(cls, product: "Product") -> "ProductType":
         return ProductType(
-            id=product.id,
+            id=sid(product.id),
             name=product.name,
             price=product.price,
             quality=product.quality,

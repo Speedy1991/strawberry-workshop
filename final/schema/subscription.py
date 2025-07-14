@@ -14,8 +14,8 @@ from .types import SocialClubType
 
 @strawberry.type
 class Subscription:
-    @strawberry.subscription
-    async def count(self, info: MyInfo, target: int = 100) -> AsyncGenerator[int, None]:
+    @strawberry.subscription()
+    async def count(self, info: MyInfo, target: int = 100) -> AsyncGenerator[int]:
         try:
             for i in range(target):
                 yield i
@@ -23,8 +23,8 @@ class Subscription:
         except asyncio.CancelledError:
             pass
 
-    @strawberry.subscription
-    async def current_time(self, info: MyInfo) -> AsyncGenerator[datetime, None]:
+    @strawberry.subscription()
+    async def current_time(self, info: MyInfo) -> AsyncGenerator[datetime]:
         try:
             while True:
                 yield timezone.now()
@@ -32,8 +32,8 @@ class Subscription:
         except asyncio.CancelledError:
             pass
 
-    @strawberry.subscription
-    async def message(self, info: MyInfo) -> str:
+    @strawberry.subscription()
+    async def message(self, info: MyInfo) -> AsyncGenerator[str]:
         pubsub = RedisSingleTone.subscribe("message")
         try:
             while True:
@@ -48,8 +48,8 @@ class Subscription:
             pubsub.unsubscribe()
             pubsub.reset()
 
-    @strawberry.subscription
-    async def social_club(self, info: MyInfo) -> SocialClubType:
+    @strawberry.subscription()
+    async def social_club(self, info: MyInfo) -> AsyncGenerator[SocialClubType]:
         pubsub = RedisSingleTone.subscribe("social_club_create_update")
         try:
             while True:

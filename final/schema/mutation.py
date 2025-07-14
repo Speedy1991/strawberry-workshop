@@ -26,7 +26,7 @@ class SocialClubInput:
 
 @strawberry.type
 class Mutation:
-    @strawberry.mutation
+    @strawberry.mutation()
     async def create_or_update_product(
         self, info: MyInfo, inp: ProductInput, pk: Optional[strawberry.ID] = None
     ) -> ProductType:
@@ -39,7 +39,7 @@ class Mutation:
         await product.asave()
         return await ProductType.async_from_obj(info, product)
 
-    @strawberry.mutation
+    @strawberry.mutation()
     async def create_or_update_social_club(
         self, info: MyInfo, inp: SocialClubInput, pk: Optional[strawberry.ID] = None
     ) -> SocialClubType:
