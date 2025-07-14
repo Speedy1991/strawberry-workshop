@@ -38,3 +38,7 @@ Endless looping
 
 ExerciseX:
 Explain Frontend, codegen, typescript
+
+Future:
+@defer
+@stream
