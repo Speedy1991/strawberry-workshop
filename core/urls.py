@@ -36,7 +36,6 @@ if settings.DEBUG:
             csrf_exempt(
                 GraphQLView.as_view(
                     schema=schema,
-                    graphql_ide="apollo-sandbox",
                     multipart_uploads_enabled=True,
                 )
             ),
